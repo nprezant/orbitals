@@ -17,3 +17,6 @@ Makefile
 *.lib
 *.so
 *.dll
+
+# Ignore clang files
+.clangd/
