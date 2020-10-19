@@ -1,0 +1,8 @@
+BreakBeforeBraces: Allman
+BinPackParameters: false
+AlignAfterOpenBracket: AlwaysBreak
+AllowAllArgumentsOnNextLine: true
+AllowAllParametersOfDeclarationOnNextLine: true
+
+DerivePointerAlignment: false
+PointerAlignment: Left
