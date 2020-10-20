@@ -35,10 +35,40 @@ public:
   ClassicalOrbitalElements orbitalElements();
   void setOrbitalElements(const ClassicalOrbitalElements orbitalElements);
 
-  double time();
-  void setTime(double time);
+  double timeSincePerigee();
+  void setTimeSincePerigee(double time);
 
   std::vector<PositionVelocity> orbitalPath(int numPoints);
+
+  double semiMajorAxis();
+
+  double perigeeRadius();
+
+  double apogeeRadius();
+
+  double perigeeVelocity();
+
+  double apogeeVelocity();
+
+  double currentRadius();
+
+  double radialVelocity();
+
+  double azimuthalVelocity();
+
+  double absoluteVelocity();
+
+  double period();
+
+  double flightPathAngle();
+
+  double radiusAtTheta(double theta);
+
+  double azimuthatVelocityAtTheta(double theta);
+
+  double radialVelocityAtTheta(double theta);
+
+  double absoluteVelocityAtTheta(double theta);
 };
 
 #endif // ORBITAL_H

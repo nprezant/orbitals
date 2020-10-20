@@ -11,13 +11,15 @@ public:
   Vector3 position;
   double mass;
   double radius;
+  double Mu;
 
   PrimaryBody(
       const std::string& name,
       const Vector3& position,
       double mass,
-      double radius)
-      : name(name), position(position), mass(mass), radius(radius)
+      double radius,
+      double Mu)
+      : name(name), position(position), mass(mass), radius(radius), Mu(Mu)
   {
   }
 
@@ -25,7 +27,8 @@ public:
   {
     double radiusEarth = 6371.0;                  // km
     double massEarth = 5.9722 * std::pow(10, 24); // kg
-    return PrimaryBody("Earth", Vector3::origin(), massEarth, radiusEarth);
+    double Mu = 398600;                           // Units?
+    return PrimaryBody("Earth", Vector3::origin(), massEarth, radiusEarth, Mu);
   }
 };
 
