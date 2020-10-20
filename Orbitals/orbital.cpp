@@ -1,7 +1,56 @@
 #include "orbital.h"
 
+#include "newtonsmethod.h"
 #include "pi.h"
 #include <cmath>
+
+double Orbital::timeSincePerigee()
+{
+  // Find the time since perigee based on the classical orbital elements
+  const auto h = classicalOrbitalElements_.h;
+  const auto e = classicalOrbitalElements_.e;
+  const auto theta = classicalOrbitalElements_.theta;
+  const auto Mu = primaryBody_.Mu;
+
+  const auto period =
+      2 * PI / (Mu * Mu) * std::pow(h / std::sqrt(1 - e * e), 3);
+  const auto E =
+      2 * std::atan(std::sqrt((1 - e) / (1 + e)) * std::tan(0.5 * theta));
+  const auto time = (E - e * std::sin(E)) * period / (2 * PI);
+  return time;
+}
+
+void Orbital::setTimeSincePerigee(double time)
+{
+  // Resets the orbital elements based on the given time since perigee
+  const auto h = classicalOrbitalElements_.h;
+  const auto e = classicalOrbitalElements_.e;
+  const auto Mu = primaryBody_.Mu;
+
+  // find mean anomoly
+  auto Me = (Mu * Mu) / (h * h * h) * std::pow(1 - e * e, 1.5) * time;
+
+  // find eccentricic anomoly
+  auto Efunc = [e, Me](double E) { return E - e * std::sin(E) - Me; };
+  auto Eprimefunc = [e](double E) { return 1 - e * std::cos(E); };
+
+  double guess;
+  if (Me <= PI)
+  {
+    guess = Me + 0.5 * e;
+  }
+  else
+  {
+    guess = Me - 0.5 * e;
+  }
+  const auto E = NewtonsMethod::compute(Efunc, Eprimefunc, guess);
+
+  // define orbital elements for this time
+  const auto theta =
+      2 * std::atan(std::sqrt((1 + e) / (1 - e)) * std::tan(E / 2));
+
+  classicalOrbitalElements_.theta = theta;
+}
 
 std::vector<PositionVelocity> Orbital::orbitalPath(int numPoints)
 {
