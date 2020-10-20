@@ -15,7 +15,21 @@ class Lambert
   static double CFunction(double z);
 
 public:
-  static PositionVelocity compute(
+  struct Result
+  {
+    PositionVelocity startPositionVelocity;
+    PositionVelocity endPositionVelocity;
+
+    Result(
+        const PositionVelocity& startPositionVelocity,
+        const PositionVelocity& endPositionVelocity)
+        : startPositionVelocity(startPositionVelocity),
+          endPositionVelocity(endPositionVelocity)
+    {
+    }
+  };
+
+  static Result compute(
       const Vector3& positionStart,
       const Vector3& positionEnd,
       double deltaT,

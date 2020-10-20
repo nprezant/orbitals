@@ -60,7 +60,7 @@ double Lambert::CFunction(double z)
     return 0.5;
 }
 
-PositionVelocity Lambert::compute(
+Lambert::Result Lambert::compute(
     const Vector3& positionStart,
     const Vector3& positionEnd,
     double deltaT,
@@ -134,6 +134,9 @@ PositionVelocity Lambert::compute(
   auto velocityStart = (positionEnd - positionStart * f) * (1 / g);
   auto velocityEnd = (positionEnd * gdot - positionStart) * (1 / g);
 
-  // step 8: compute classical orbital elements from position and velocity
-  return PositionVelocity(positionStart, velocityStart);
+  // step 8: return position and velocity at start and end location
+  auto startPV = PositionVelocity(positionStart, velocityStart);
+  auto endPV = PositionVelocity(positionEnd, velocityEnd);
+
+  return Result(startPV, endPV);
 }

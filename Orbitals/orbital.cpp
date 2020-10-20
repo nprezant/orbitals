@@ -14,11 +14,12 @@ Orbital Orbital::fromLambert(
 {
   // time given in seconds
 
-  const auto positionVelocity =
+  const auto startEndPVs =
       Lambert::compute(positionStart, positionEnd, deltaT, primaryBody.Mu);
+  const auto& startPV = startEndPVs.startPositionVelocity;
 
-  const auto position = positionVelocity.position;
-  const auto velocity = positionVelocity.velocity;
+  const auto position = startPV.position;
+  const auto velocity = startPV.velocity;
 
   const auto elements = ClassicalOrbitalElements::fromPositionVelocity(
       position, velocity, primaryBody.Mu);
