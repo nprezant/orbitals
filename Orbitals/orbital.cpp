@@ -1,8 +1,30 @@
 #include "orbital.h"
 
+#include "lambert.h"
 #include "newtonsmethod.h"
 #include "pi.h"
 #include <cmath>
+#include <stdexcept>
+
+Orbital Orbital::fromLambert(
+    const Vector3& positionStart,
+    const Vector3& positionEnd,
+    double deltaT,
+    const PrimaryBody& primaryBody)
+{
+  // time given in seconds
+
+  const auto positionVelocity =
+      Lambert::compute(positionStart, positionEnd, deltaT, primaryBody.Mu);
+
+  const auto position = positionVelocity.position;
+  const auto velocity = positionVelocity.velocity;
+
+  const auto elements = ClassicalOrbitalElements::fromPositionVelocity(
+      position, velocity, primaryBody.Mu);
+
+  return Orbital(primaryBody, position, velocity, elements);
+}
 
 double Orbital::timeSincePerigee()
 {

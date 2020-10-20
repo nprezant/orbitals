@@ -15,7 +15,6 @@ class Orbital
   Vector3 velocity_;
   ClassicalOrbitalElements classicalOrbitalElements_;
 
-public:
   Orbital(
       const PrimaryBody& primaryBody,
       const Vector3& position,
@@ -26,14 +25,21 @@ public:
   {
   }
 
+public:
+  static Orbital fromLambert(
+      const Vector3& positionStart,
+      const Vector3& positionEnd,
+      double deltaT,
+      const PrimaryBody& primaryBody);
+
   Vector3 position();
-  void setPosition(const Vector3 position);
+  void setPosition(const Vector3& position);
 
   Vector3 velocity();
-  void setVelocity(const Vector3 velocity);
+  void setVelocity(const Vector3& velocity);
 
   ClassicalOrbitalElements orbitalElements();
-  void setOrbitalElements(const ClassicalOrbitalElements orbitalElements);
+  void setOrbitalElements(const ClassicalOrbitalElements& orbitalElements);
 
   double timeSincePerigee();
   void setTimeSincePerigee(double time);

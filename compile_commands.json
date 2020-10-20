@@ -20,6 +20,11 @@
   "file": "/home/noah/orbitals/Orbitals/classicalorbitalelements.cpp"
 },
 {
+  "directory": "/home/noah/orbitals/Orbitals",
+  "command": "/usr/bin/c++  -I/home/noah/orbitals/Orbitals  -o CMakeFiles/Orbitals.dir/lambert.cpp.o -c /home/noah/orbitals/Orbitals/lambert.cpp",
+  "file": "/home/noah/orbitals/Orbitals/lambert.cpp"
+},
+{
   "directory": "/home/noah/orbitals/Orbitals-Tests",
   "command": "/usr/bin/c++  -I/home/noah/orbitals/Orbitals  -o CMakeFiles/Orbitals-Tests.dir/main.cpp.o -c /home/noah/orbitals/Orbitals-Tests/main.cpp",
   "file": "/home/noah/orbitals/Orbitals-Tests/main.cpp"
