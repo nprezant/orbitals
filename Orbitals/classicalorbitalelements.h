@@ -12,7 +12,6 @@ struct ClassicalOrbitalElements
   double Omega;
   double inclination;
   double omega;
-  double Mu;
 
   ClassicalOrbitalElements(
       double theta,
@@ -20,17 +19,16 @@ struct ClassicalOrbitalElements
       double e,
       double Omega,
       double inclination,
-      double omega,
-      double Mu)
+      double omega)
       : theta(theta), h(h), e(e), Omega(Omega), inclination(inclination),
-        omega(omega), Mu(Mu)
+        omega(omega)
   {
   }
 
   static ClassicalOrbitalElements fromPositionVelocity(
       const Vector3& position, const Vector3& velocity, double Mu);
 
-  PositionVelocity positionVelocity() const;
+  PositionVelocity toPositionVelocity(double Mu) const;
 };
 
 #endif // CLASSICALORBITALELEMENTS_H

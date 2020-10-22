@@ -26,6 +26,24 @@ class Orbital
   }
 
 public:
+  static Orbital fromClassicalOrbitalElements(
+      const ClassicalOrbitalElements& classicalOrbitalElements,
+      const PrimaryBody& primaryBody);
+
+  static Orbital fromPositionVelocity(
+      const Vector3& position,
+      const Vector3& velocity,
+      const PrimaryBody& primaryBody);
+
+  static Orbital fromPositionVelocity(
+      const PositionVelocity& positionVelocity, const PrimaryBody& primaryBody);
+
+  static Orbital elliptical(
+      double perigeeRadius,
+      double apogeeRadius,
+      double omega,
+      const PrimaryBody& primaryBody);
+
   static Orbital fromLambert(
       const Vector3& positionStart,
       const Vector3& positionEnd,
@@ -75,6 +93,8 @@ public:
   double radialVelocityAtTheta(double theta);
 
   double absoluteVelocityAtTheta(double theta);
+
+  Orbital hohmannTransferTo(Orbital endOrbit);
 };
 
 #endif // ORBITAL_H

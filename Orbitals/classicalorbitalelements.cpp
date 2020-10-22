@@ -83,10 +83,10 @@ ClassicalOrbitalElements ClassicalOrbitalElements::fromPositionVelocity(
   }
 
   // return the 6 classical orbital elements
-  return ClassicalOrbitalElements(theta, h, e, Omega, inclination, omega, Mu);
+  return ClassicalOrbitalElements(theta, h, e, Omega, inclination, omega);
 }
 
-PositionVelocity ClassicalOrbitalElements::positionVelocity() const
+PositionVelocity ClassicalOrbitalElements::toPositionVelocity(double Mu) const
 {
   // Find position and velocity vectors from orbital elements
   // given in a geocentric equatorial frame

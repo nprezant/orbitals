@@ -6,6 +6,56 @@
 #include <cmath>
 #include <stdexcept>
 
+Orbital Orbital::fromClassicalOrbitalElements(
+    const ClassicalOrbitalElements& classicalOrbitalElements,
+    const PrimaryBody& primaryBody)
+{
+  const auto pv = classicalOrbitalElements.toPositionVelocity(primaryBody.Mu);
+
+  return Orbital(
+      primaryBody, pv.position, pv.velocity, classicalOrbitalElements);
+}
+
+Orbital Orbital::fromPositionVelocity(
+    const Vector3& position,
+    const Vector3& velocity,
+    const PrimaryBody& primaryBody)
+{
+  const auto elements = ClassicalOrbitalElements::fromPositionVelocity(
+      position, velocity, primaryBody.Mu);
+
+  return Orbital(primaryBody, position, velocity, elements);
+}
+
+Orbital Orbital::fromPositionVelocity(
+    const PositionVelocity& positionVelocity, const PrimaryBody& primaryBody)
+{
+  return Orbital::fromPositionVelocity(
+      positionVelocity.position, positionVelocity.velocity, primaryBody);
+}
+
+Orbital Orbital::elliptical(
+    double perigeeRadius,
+    double apogeeRadius,
+    double omega,
+    const PrimaryBody& primaryBody)
+{
+  auto Mu = primaryBody.Mu;
+
+  double theta = 0;
+  double h = std::sqrt(2 * Mu) * std::sqrt(
+                                     (apogeeRadius * perigeeRadius) /
+                                     (apogeeRadius + perigeeRadius));
+  double e = (apogeeRadius - perigeeRadius) / (apogeeRadius + perigeeRadius);
+  double Omega = 0;
+  double inclination = 0;
+
+  const auto elements =
+      ClassicalOrbitalElements(theta, h, e, Omega, inclination, omega);
+
+  return Orbital::fromClassicalOrbitalElements(elements, primaryBody);
+}
+
 Orbital Orbital::fromLambert(
     const Vector3& positionStart,
     const Vector3& positionEnd,
@@ -90,10 +140,10 @@ std::vector<PositionVelocity> Orbital::orbitalPath(int numPoints)
     const auto elements = ClassicalOrbitalElements(
         theta, classicalOrbitalElements_.h, classicalOrbitalElements_.e,
         classicalOrbitalElements_.Omega, classicalOrbitalElements_.inclination,
-        classicalOrbitalElements_.omega, classicalOrbitalElements_.Mu);
+        classicalOrbitalElements_.omega);
 
     // Figure out and store position and velocity at this location
-    points.emplace_back(elements.positionVelocity());
+    points.emplace_back(elements.toPositionVelocity(primaryBody_.Mu));
   }
 
   return points;
@@ -190,4 +240,16 @@ double Orbital::absoluteVelocityAtTheta(double theta)
   const auto vAzi = azimuthatVelocityAtTheta(theta);
 
   return std::sqrt(vRad * vRad + vAzi * vAzi);
+}
+
+Orbital Orbital::hohmannTransferTo(Orbital endOrbit)
+{
+  auto startTheta = classicalOrbitalElements_.theta;
+  auto endTheta = startTheta + PI; // 180 degrees
+
+  auto rStartTransfer = radiusAtTheta(startTheta);
+  auto rEndTransfer = endOrbit.radiusAtTheta(endTheta);
+
+  return Orbital::elliptical(
+      rStartTransfer, rEndTransfer, startTheta, primaryBody_);
 }
