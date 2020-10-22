@@ -244,6 +244,8 @@ double Orbital::absoluteVelocityAtTheta(double theta)
 
 Orbital Orbital::hohmannTransferTo(Orbital endOrbit)
 {
+  // Returns orbital for hohmann transfer ellipse between
+  // the two orbits. Both orbits MUST share an apse line.
   auto startTheta = classicalOrbitalElements_.theta;
   auto endTheta = startTheta + PI; // 180 degrees
 
