@@ -44,6 +44,8 @@ public:
       double omega,
       const PrimaryBody& primaryBody);
 
+  static Orbital circular(double radius, const PrimaryBody& primaryBody);
+
   static Orbital fromLambert(
       const Vector3& positionStart,
       const Vector3& positionEnd,
