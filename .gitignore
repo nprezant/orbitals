@@ -11,6 +11,7 @@ CMakeFiles/
 CMakeCache.txt
 *.cmake
 Makefile
+compile_commands.json
 
 # Ignore library/shared library binaries
 *.a
