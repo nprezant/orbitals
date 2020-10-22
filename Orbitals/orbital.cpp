@@ -56,12 +56,30 @@ Orbital Orbital::elliptical(
   return Orbital::fromClassicalOrbitalElements(elements, primaryBody);
 }
 
-Orbital Orbital::circular(double radius, const PrimaryBody& primaryBody)
+Orbital Orbital::circularRadius(double radius, const PrimaryBody& primaryBody)
 {
   auto Mu = primaryBody.Mu;
   auto v = std::sqrt(Mu / radius);
   auto theta = 0;
   auto h = v * radius;
+  auto e = 0;
+  auto Omega = 0;
+  auto inclination = 0;
+  auto omega = 0;
+
+  const auto elements =
+      ClassicalOrbitalElements(theta, h, e, Omega, inclination, omega);
+
+  return Orbital::fromClassicalOrbitalElements(elements, primaryBody);
+}
+
+Orbital
+Orbital::circularVelocity(double velocity, const PrimaryBody& primaryBody)
+{
+  auto Mu = primaryBody.Mu;
+  auto r = Mu / (velocity * velocity);
+  auto theta = 0;
+  auto h = r * velocity;
   auto e = 0;
   auto Omega = 0;
   auto inclination = 0;
