@@ -148,6 +148,17 @@ void Orbital::setClassicalOrbitalElements(
   classicalOrbitalElements_ = elements;
 }
 
+PrimaryBody Orbital::primaryBody() { return primaryBody_; }
+
+void Orbital::setPrimaryBody(const PrimaryBody& primaryBody)
+{
+  const auto positionVelocity =
+      classicalOrbitalElements_.toPositionVelocity(primaryBody.Mu);
+  position_ = positionVelocity.position;
+  velocity_ = positionVelocity.velocity;
+  primaryBody_ = primaryBody;
+}
+
 double Orbital::timeSincePerigee()
 {
   // Find the time since perigee based on the classical orbital elements

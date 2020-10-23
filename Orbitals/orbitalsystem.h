@@ -8,11 +8,11 @@
 
 class OrbitalSystem
 {
-  PrimaryBody primarybody_;
+  PrimaryBody primaryBody_;
   std::vector<Orbital> orbitals_;
 
   OrbitalSystem(PrimaryBody primaryBody, std::vector<Orbital> orbitals)
-      : primarybody_(primaryBody), orbitals_(orbitals)
+      : primaryBody_(primaryBody), orbitals_(orbitals)
   {
   }
 
@@ -22,6 +22,9 @@ public:
   {
     return OrbitalSystem(PrimaryBody::Earth(), {});
   }
+
+  // Add an existing orbital to this system.
+  void addOrbital(Orbital& orbital);
 
   // Information on this orbital system
   std::string info();

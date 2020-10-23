@@ -64,6 +64,9 @@ public:
   ClassicalOrbitalElements classicalOrbitalElements();
   void setClassicalOrbitalElements(const ClassicalOrbitalElements& elements);
 
+  PrimaryBody primaryBody();
+  void setPrimaryBody(const PrimaryBody& primaryBody);
+
   double timeSincePerigee();
   void setTimeSincePerigee(double time);
 
