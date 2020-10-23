@@ -61,8 +61,8 @@ public:
   Vector3 velocity();
   void setVelocity(const Vector3& velocity);
 
-  ClassicalOrbitalElements orbitalElements();
-  void setOrbitalElements(const ClassicalOrbitalElements& orbitalElements);
+  ClassicalOrbitalElements classicalOrbitalElements();
+  void setClassicalOrbitalElements(const ClassicalOrbitalElements& elements);
 
   double timeSincePerigee();
   void setTimeSincePerigee(double time);

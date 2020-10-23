@@ -134,6 +134,20 @@ void Orbital::setVelocity(const Vector3& velocity)
   classicalOrbitalElements_ = elements;
 }
 
+ClassicalOrbitalElements Orbital::classicalOrbitalElements()
+{
+  return classicalOrbitalElements_;
+}
+
+void Orbital::setClassicalOrbitalElements(
+    const ClassicalOrbitalElements& elements)
+{
+  const auto positionVelocity = elements.toPositionVelocity(primaryBody_.Mu);
+  position_ = positionVelocity.position;
+  velocity_ = positionVelocity.velocity;
+  classicalOrbitalElements_ = elements;
+}
+
 double Orbital::timeSincePerigee()
 {
   // Find the time since perigee based on the classical orbital elements
