@@ -80,24 +80,21 @@ public:
   double apogeeVelocity();
 
   double radius();
+  double radius(double theta);
 
   double radialVelocity();
+  double radialVelocity(double theta);
 
   double azimuthalVelocity();
+  double azimuthalVelocity(double theta);
 
   double absoluteVelocity();
+  double absoluteVelocity(double theta);
 
   double period();
 
   double flightPathAngle();
-
-  double radiusAtTheta(double theta);
-
-  double azimuthatVelocityAtTheta(double theta);
-
-  double radialVelocityAtTheta(double theta);
-
-  double absoluteVelocityAtTheta(double theta);
+  double flightPathAngle(double theta);
 
   Orbital hohmannTransferTo(Orbital endOrbit);
 };

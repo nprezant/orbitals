@@ -255,11 +255,23 @@ double Orbital::radius()
                   std::cos(classicalOrbitalElements_.theta));
 }
 
+double Orbital::radius(double theta)
+{
+  const auto h = classicalOrbitalElements_.h;
+  const auto e = classicalOrbitalElements_.e;
+  const auto Mu = primaryBody_.Mu;
+  return (h * h) / Mu * 1.0 / (1.0 + e * std::cos(theta));
+}
+
 double Orbital::radialVelocity()
 {
+  return radialVelocity(classicalOrbitalElements_.theta);
+}
+
+double Orbital::radialVelocity(double theta)
+{
   return primaryBody_.Mu / classicalOrbitalElements_.h *
-         classicalOrbitalElements_.e *
-         std::sin(classicalOrbitalElements_.theta);
+         classicalOrbitalElements_.e * std::sin(theta);
 }
 
 double Orbital::azimuthalVelocity()
@@ -267,10 +279,22 @@ double Orbital::azimuthalVelocity()
   return classicalOrbitalElements_.h / radius();
 }
 
+double Orbital::azimuthalVelocity(double theta)
+{
+  return classicalOrbitalElements_.h / radius(theta);
+}
+
 double Orbital::absoluteVelocity()
 {
   auto vRadial = radialVelocity();
   auto vAzimuthal = azimuthalVelocity();
+  return std::sqrt(vRadial * vRadial + vAzimuthal * vAzimuthal);
+}
+
+double Orbital::absoluteVelocity(double theta)
+{
+  auto vRadial = radialVelocity(theta);
+  auto vAzimuthal = azimuthalVelocity(theta);
   return std::sqrt(vRadial * vRadial + vAzimuthal * vAzimuthal);
 }
 
@@ -284,33 +308,9 @@ double Orbital::flightPathAngle()
   return std::atan(radialVelocity() / azimuthalVelocity());
 }
 
-double Orbital::radiusAtTheta(double theta)
+double Orbital::flightPathAngle(double theta)
 {
-  const auto h = classicalOrbitalElements_.h;
-  const auto e = classicalOrbitalElements_.e;
-  const auto Mu = primaryBody_.Mu;
-
-  return h * h / Mu * 1 / (1 + e * std::cos(theta));
-}
-
-double Orbital::azimuthatVelocityAtTheta(double theta)
-{
-  return primaryBody_.Mu / classicalOrbitalElements_.h *
-         (1 + classicalOrbitalElements_.e * std::cos(theta));
-}
-
-double Orbital::radialVelocityAtTheta(double theta)
-{
-  return primaryBody_.Mu / classicalOrbitalElements_.h *
-         classicalOrbitalElements_.e * std::sin(theta);
-}
-
-double Orbital::absoluteVelocityAtTheta(double theta)
-{
-  const auto vRad = radialVelocityAtTheta(theta);
-  const auto vAzi = azimuthatVelocityAtTheta(theta);
-
-  return std::sqrt(vRad * vRad + vAzi * vAzi);
+  return std::atan(radialVelocity(theta) / azimuthalVelocity(theta));
 }
 
 Orbital Orbital::hohmannTransferTo(Orbital endOrbit)
@@ -320,8 +320,8 @@ Orbital Orbital::hohmannTransferTo(Orbital endOrbit)
   auto startTheta = classicalOrbitalElements_.theta;
   auto endTheta = startTheta + PI; // 180 degrees
 
-  auto rStartTransfer = radiusAtTheta(startTheta);
-  auto rEndTransfer = endOrbit.radiusAtTheta(endTheta);
+  auto rStartTransfer = radius(startTheta);
+  auto rEndTransfer = endOrbit.radius(endTheta);
 
   return Orbital::elliptical(
       rStartTransfer, rEndTransfer, startTheta, primaryBody_);
