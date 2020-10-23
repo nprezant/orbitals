@@ -30,6 +30,12 @@ public:
     double Mu = 398600;                           // Units?
     return PrimaryBody("Earth", Vector3::origin(), massEarth, radiusEarth, Mu);
   }
+
+  inline bool operator==(const PrimaryBody& other)
+  {
+    return name == other.name && position == other.position &&
+           mass == other.mass && radius == other.radius && Mu == other.Mu;
+  }
 };
 
 #endif // PRIMARYBODY_H

@@ -45,7 +45,7 @@ struct Vector3
     return Vector3(X * other, Y * other, Z * other);
   }
 
-  inline Vector3 operator*(const Matrix3 m) const
+  inline Vector3 operator*(const Matrix3& m) const
   {
     double x = m.n11 * X + m.n21 * Y + m.n31 * Z;
     double y = m.n12 * X + m.n22 * Y + m.n32 * Z;

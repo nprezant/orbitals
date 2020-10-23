@@ -24,7 +24,20 @@ public:
   }
 
   // Add an existing orbital to this system.
-  void addOrbital(Orbital orbital);
+  void addOrbital(const Orbital& orbital);
+
+  // Create and add new orbits to the system
+  void addClassicalOrbitalElementsOrbit(
+      const ClassicalOrbitalElements& classicalOrbitalElements);
+  void
+  addPositionVelocityOrbit(const Vector3& position, const Vector3& velocity);
+  void addPositionVelocityOrbit(const PositionVelocity& positionVelocity);
+  void
+  addEllipticalOrbit(double perigeeRadius, double apogeeRadius, double omega);
+  void addCircularOrbitRadius(double radius);
+  void addCircularOrbitVelocity(double velocity);
+  void addLambertOrbit(
+      const Vector3& positionStart, const Vector3& positionEnd, double deltaT);
 
   // Information on this orbital system
   std::string info();
