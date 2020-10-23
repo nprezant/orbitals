@@ -112,6 +112,28 @@ Orbital Orbital::fromLambert(
   return Orbital(primaryBody, position, velocity, elements);
 }
 
+Vector3 Orbital::position() { return position_; }
+
+void Orbital::setPosition(const Vector3& position)
+{
+  const auto elements = ClassicalOrbitalElements::fromPositionVelocity(
+      position, velocity_, primaryBody_.Mu);
+
+  position_ = position;
+  classicalOrbitalElements_ = elements;
+}
+
+Vector3 Orbital::velocity() { return velocity_; }
+
+void Orbital::setVelocity(const Vector3& velocity)
+{
+  const auto elements = ClassicalOrbitalElements::fromPositionVelocity(
+      position_, velocity, primaryBody_.Mu);
+
+  velocity_ = velocity;
+  classicalOrbitalElements_ = elements;
+}
+
 double Orbital::timeSincePerigee()
 {
   // Find the time since perigee based on the classical orbital elements
