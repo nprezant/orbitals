@@ -247,7 +247,7 @@ double Orbital::apogeeVelocity()
   return classicalOrbitalElements_.h / apogeeRadius();
 }
 
-double Orbital::currentRadius()
+double Orbital::radius()
 {
   return semiMajorAxis() *
          (1 - classicalOrbitalElements_.e * classicalOrbitalElements_.e) /
@@ -264,7 +264,7 @@ double Orbital::radialVelocity()
 
 double Orbital::azimuthalVelocity()
 {
-  return classicalOrbitalElements_.h / currentRadius();
+  return classicalOrbitalElements_.h / radius();
 }
 
 double Orbital::absoluteVelocity()

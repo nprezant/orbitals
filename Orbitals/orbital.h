@@ -79,7 +79,7 @@ public:
 
   double apogeeVelocity();
 
-  double currentRadius();
+  double radius();
 
   double radialVelocity();
 
