@@ -55,51 +55,51 @@ public:
       double deltaT,
       const PrimaryBody& primaryBody);
 
-  Vector3 position();
+  Vector3 position() const;
   void setPosition(const Vector3& position);
 
-  Vector3 velocity();
+  Vector3 velocity() const;
   void setVelocity(const Vector3& velocity);
 
-  ClassicalOrbitalElements classicalOrbitalElements();
+  ClassicalOrbitalElements classicalOrbitalElements() const;
   void setClassicalOrbitalElements(const ClassicalOrbitalElements& elements);
 
-  PrimaryBody primaryBody();
+  PrimaryBody primaryBody() const;
   void setPrimaryBody(const PrimaryBody& primaryBody);
 
-  double timeSincePerigee();
+  double timeSincePerigee() const;
   void setTimeSincePerigee(double time);
 
-  std::vector<PositionVelocity> orbitalPath(int numPoints);
+  std::vector<PositionVelocity> orbitalPath(int numPoints) const;
 
-  double semiMajorAxis();
+  double semiMajorAxis() const;
 
-  double perigeeRadius();
+  double perigeeRadius() const;
 
-  double apogeeRadius();
+  double apogeeRadius() const;
 
-  double perigeeVelocity();
+  double perigeeVelocity() const;
 
-  double apogeeVelocity();
+  double apogeeVelocity() const;
 
-  double radius();
-  double radius(double theta);
+  double radius() const;
+  double radius(double theta) const;
 
-  double radialVelocity();
-  double radialVelocity(double theta);
+  double radialVelocity() const;
+  double radialVelocity(double theta) const;
 
-  double azimuthalVelocity();
-  double azimuthalVelocity(double theta);
+  double azimuthalVelocity() const;
+  double azimuthalVelocity(double theta) const;
 
-  double absoluteVelocity();
-  double absoluteVelocity(double theta);
+  double absoluteVelocity() const;
+  double absoluteVelocity(double theta) const;
 
-  double period();
+  double period() const;
 
-  double flightPathAngle();
-  double flightPathAngle(double theta);
+  double flightPathAngle() const;
+  double flightPathAngle(double theta) const;
 
-  Orbital hohmannTransferTo(Orbital endOrbit);
+  Orbital hohmannTransferTo(const Orbital& endOrbit) const;
 };
 
 #endif // ORBITAL_H

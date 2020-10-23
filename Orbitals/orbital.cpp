@@ -112,7 +112,7 @@ Orbital Orbital::fromLambert(
   return Orbital(primaryBody, position, velocity, elements);
 }
 
-Vector3 Orbital::position() { return position_; }
+Vector3 Orbital::position() const { return position_; }
 
 void Orbital::setPosition(const Vector3& position)
 {
@@ -123,7 +123,7 @@ void Orbital::setPosition(const Vector3& position)
   classicalOrbitalElements_ = elements;
 }
 
-Vector3 Orbital::velocity() { return velocity_; }
+Vector3 Orbital::velocity() const { return velocity_; }
 
 void Orbital::setVelocity(const Vector3& velocity)
 {
@@ -134,7 +134,7 @@ void Orbital::setVelocity(const Vector3& velocity)
   classicalOrbitalElements_ = elements;
 }
 
-ClassicalOrbitalElements Orbital::classicalOrbitalElements()
+ClassicalOrbitalElements Orbital::classicalOrbitalElements() const
 {
   return classicalOrbitalElements_;
 }
@@ -148,7 +148,7 @@ void Orbital::setClassicalOrbitalElements(
   classicalOrbitalElements_ = elements;
 }
 
-PrimaryBody Orbital::primaryBody() { return primaryBody_; }
+PrimaryBody Orbital::primaryBody() const { return primaryBody_; }
 
 void Orbital::setPrimaryBody(const PrimaryBody& primaryBody)
 {
@@ -159,7 +159,7 @@ void Orbital::setPrimaryBody(const PrimaryBody& primaryBody)
   primaryBody_ = primaryBody;
 }
 
-double Orbital::timeSincePerigee()
+double Orbital::timeSincePerigee() const
 {
   // Find the time since perigee based on the classical orbital elements
   const auto h = classicalOrbitalElements_.h;
@@ -207,7 +207,7 @@ void Orbital::setTimeSincePerigee(double time)
   classicalOrbitalElements_.theta = theta;
 }
 
-std::vector<PositionVelocity> Orbital::orbitalPath(int numPoints)
+std::vector<PositionVelocity> Orbital::orbitalPath(int numPoints) const
 {
   // Finds the position and velocity for many points around the orbit
 
@@ -231,34 +231,34 @@ std::vector<PositionVelocity> Orbital::orbitalPath(int numPoints)
   return points;
 }
 
-double Orbital::semiMajorAxis()
+double Orbital::semiMajorAxis() const
 {
   return (classicalOrbitalElements_.h * classicalOrbitalElements_.h) /
          (primaryBody_.Mu *
           (1 - classicalOrbitalElements_.e * classicalOrbitalElements_.e));
 }
 
-double Orbital::perigeeRadius()
+double Orbital::perigeeRadius() const
 {
   return semiMajorAxis() * (1 - classicalOrbitalElements_.e);
 }
 
-double Orbital::apogeeRadius()
+double Orbital::apogeeRadius() const
 {
   return semiMajorAxis() * (1 + classicalOrbitalElements_.e);
 }
 
-double Orbital::perigeeVelocity()
+double Orbital::perigeeVelocity() const
 {
   return classicalOrbitalElements_.h / perigeeRadius();
 }
 
-double Orbital::apogeeVelocity()
+double Orbital::apogeeVelocity() const
 {
   return classicalOrbitalElements_.h / apogeeRadius();
 }
 
-double Orbital::radius()
+double Orbital::radius() const
 {
   return semiMajorAxis() *
          (1 - classicalOrbitalElements_.e * classicalOrbitalElements_.e) /
@@ -266,7 +266,7 @@ double Orbital::radius()
                   std::cos(classicalOrbitalElements_.theta));
 }
 
-double Orbital::radius(double theta)
+double Orbital::radius(double theta) const
 {
   const auto h = classicalOrbitalElements_.h;
   const auto e = classicalOrbitalElements_.e;
@@ -274,57 +274,57 @@ double Orbital::radius(double theta)
   return (h * h) / Mu * 1.0 / (1.0 + e * std::cos(theta));
 }
 
-double Orbital::radialVelocity()
+double Orbital::radialVelocity() const
 {
   return radialVelocity(classicalOrbitalElements_.theta);
 }
 
-double Orbital::radialVelocity(double theta)
+double Orbital::radialVelocity(double theta) const
 {
   return primaryBody_.Mu / classicalOrbitalElements_.h *
          classicalOrbitalElements_.e * std::sin(theta);
 }
 
-double Orbital::azimuthalVelocity()
+double Orbital::azimuthalVelocity() const
 {
   return classicalOrbitalElements_.h / radius();
 }
 
-double Orbital::azimuthalVelocity(double theta)
+double Orbital::azimuthalVelocity(double theta) const
 {
   return classicalOrbitalElements_.h / radius(theta);
 }
 
-double Orbital::absoluteVelocity()
+double Orbital::absoluteVelocity() const
 {
   auto vRadial = radialVelocity();
   auto vAzimuthal = azimuthalVelocity();
   return std::sqrt(vRadial * vRadial + vAzimuthal * vAzimuthal);
 }
 
-double Orbital::absoluteVelocity(double theta)
+double Orbital::absoluteVelocity(double theta) const
 {
   auto vRadial = radialVelocity(theta);
   auto vAzimuthal = azimuthalVelocity(theta);
   return std::sqrt(vRadial * vRadial + vAzimuthal * vAzimuthal);
 }
 
-double Orbital::period()
+double Orbital::period() const
 {
   return 2 * PI / std::sqrt(primaryBody_.Mu) * std::pow(semiMajorAxis(), 1.5);
 }
 
-double Orbital::flightPathAngle()
+double Orbital::flightPathAngle() const
 {
   return std::atan(radialVelocity() / azimuthalVelocity());
 }
 
-double Orbital::flightPathAngle(double theta)
+double Orbital::flightPathAngle(double theta) const
 {
   return std::atan(radialVelocity(theta) / azimuthalVelocity(theta));
 }
 
-Orbital Orbital::hohmannTransferTo(Orbital endOrbit)
+Orbital Orbital::hohmannTransferTo(const Orbital& endOrbit) const
 {
   // Returns orbital for hohmann transfer ellipse between
   // the two orbits. Both orbits MUST share an apse line.
