@@ -24,7 +24,7 @@ public:
   }
 
   // Add an existing orbital to this system.
-  void addOrbital(Orbital& orbital);
+  void addOrbital(Orbital orbital);
 
   // Information on this orbital system
   std::string info();

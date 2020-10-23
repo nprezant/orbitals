@@ -1,7 +1,7 @@
 #include "orbitalsystem.h"
 #include <string>
 
-void OrbitalSystem::addOrbital(Orbital& orbital)
+void OrbitalSystem::addOrbital(Orbital orbital)
 {
   orbital.setPrimaryBody(primaryBody_);
   orbitals_.push_back(orbital);
