@@ -5,4 +5,5 @@ project (ORBITALS)
 # List the subprojects
 add_subdirectory (Orbitals)
 add_subdirectory (OrbitalsTests)
+add_subdirectory (OrbitalsDesktop)
 
