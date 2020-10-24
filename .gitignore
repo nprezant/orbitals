@@ -1,4 +1,4 @@
-# Ignore files without extension (e.g. binaries)
+# Files without extension (e.g. binaries)
 # 1) Ignore all
 # 2) Unignore all with extensions
 # 3) Unignore all dirs
@@ -6,18 +6,21 @@
 !*.*
 !*/
 
-# Ignore cmake stuff
+# Cmake stuff
 CMakeFiles/
 CMakeCache.txt
 *.cmake
 Makefile
 compile_commands.json
 
-# Ignore library/shared library binaries
+# Library/shared library binaries
 *.a
 *.lib
 *.so
 *.dll
 
-# Ignore clang files
+# Clang files
 .clangd/
+
+# User files
+*.user
