@@ -24,3 +24,6 @@ compile_commands.json
 
 # User files
 *.user
+
+# Qt
+*_autogen/
