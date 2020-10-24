@@ -27,3 +27,6 @@ compile_commands.json
 
 # Qt
 *_autogen/
+
+# vscode
+.vscode/
