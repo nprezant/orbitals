@@ -43,6 +43,31 @@ Window {
         color: "#848895"
     }
 
+    Button {
+        id: removeButton
+        anchors.right: parent.right
+        anchors.top: parent.top
+        anchors.margins: 20
+        text: "Remove Orbital"
+        implicitWidth: 150
+        enabled: false
+
+        background: Rectangle {
+            implicitWidth: 150
+            implicitHeight: 40
+            opacity: enabled ? 1 : 0.3
+            color: parent.down ? "#6b7080" : "#848895"
+            border.color: "#222840"
+            border.width: 1
+            radius: 5
+        }
+
+        onClicked: {
+            if (orbitalSpawner.instances.length > 0)
+                orbitalSpawner.remove();
+        }
+    }
+
     View3D {
         id: view
         anchors.fill: parent
@@ -71,7 +96,7 @@ Window {
             position: Qt.vector3d(0, 150, 0)
 
             materials: [ DefaultMaterial {
-                    diffuseColor: "blue"
+                    diffuseColor: "green"
                 }
             ]
 
@@ -94,22 +119,46 @@ Window {
 
         Node {
             id: orbitalSpawner
-            property real range: 300
             property var instances: []
             readonly property int maxInstances: 100
 
             function add() {
-                var xPos = 0 // (2 * Math.random() * range) - range;
-                var yPos = 100 // (2 * Math.random() * range) - range;
-                var zPos = 0 // (2 * Math.random() * range) - range;
+                var xPos = 0
+                var yPos = 100
+                var zPos = 0
 
                 let orbitalBodyComponent = Qt.createComponent("orbitalbody.qml");
                 let instance = orbitalBodyComponent.createObject(
                         orbitalSpawner, { "x": xPos, "y": yPos, "z": zPos, });
                             // "scale": Qt.vector3d(100, 100, 100)});
-                // instance.visible = true;
                 instances.push(instance);
-                countLabel.text = "Models in Scene: " + instances.length;
+                updateButtonState();
+            }
+
+            function remove() {
+                // Remove last item in instances list
+                let instance = instances.pop();
+                instance.destroy();
+                updateButtonState();
+            }
+
+            function updateButtonState() {
+                if (instances.length === 0)
+                {
+                    addButton.enabled = true;
+                    removeButton.enabled = false;
+                }
+                else if (instances.length === maxInstances)
+                {
+                    addButton.enabled = false;
+                    removeButton.enabled = true;
+                }
+                else
+                {
+                    addButton.enabled = true;
+                    removeButton.enabled = true;
+                }
+                countLabel.text = "Orbitals in Scene: " + instances.length;
             }
         }
     }
