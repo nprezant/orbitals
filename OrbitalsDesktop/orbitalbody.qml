@@ -23,9 +23,11 @@ Node {
             }
         }
 
-        materials: [ DefaultMaterial {
-                    diffuseColor: "blue"
-                }
-            ]
+        materials: [ 
+            DefaultMaterial
+            {
+                diffuseColor: "blue"
+            }
+        ]
     }
 }

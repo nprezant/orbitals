@@ -2,6 +2,7 @@ import QtQuick 2.15
 import QtQuick.Window 2.14
 import QtQuick.Controls 2.14
 import QtQuick3D 1.15
+import OrbitalsInterface 1.0
 
 Window {
     id: window
@@ -66,6 +67,10 @@ Window {
             if (orbitalSpawner.instances.length > 0)
                 orbitalSpawner.remove();
         }
+    }
+
+    OrbitalsInterface {
+        id: orbitalsInterface
     }
 
     View3D {
@@ -158,7 +163,7 @@ Window {
                     addButton.enabled = true;
                     removeButton.enabled = true;
                 }
-                countLabel.text = "Orbitals in Scene: " + instances.length;
+                countLabel.text = "Orbitals in Scene: " + instances.length + "; Name: " + orbitalsInterface.systemName;
             }
         }
     }
