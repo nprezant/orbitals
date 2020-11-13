@@ -35,6 +35,9 @@ public:
   void addCircularOrbitVelocity(double velocity);
   void addLambertOrbit(const Vector3& positionStart, const Vector3& positionEnd, double deltaT);
 
+  // Increment time for entire system
+  void incrementTime(double step);
+
   // Information on this orbital system
   std::string info();
 };

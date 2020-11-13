@@ -207,6 +207,11 @@ void Orbital::setTimeSincePerigee(double time)
   classicalOrbitalElements_.theta = theta;
 }
 
+void Orbital::incrementTimeSincePerigee(double step)
+{
+  setTimeSincePerigee(timeSincePerigee() + step);
+}
+
 std::vector<PositionVelocity> Orbital::orbitalPath(int numPoints) const
 {
   // Finds the position and velocity for many points around the orbit
@@ -336,4 +341,19 @@ Orbital Orbital::hohmannTransferTo(const Orbital& endOrbit) const
 
   return Orbital::elliptical(
       rStartTransfer, rEndTransfer, startTheta, primaryBody_);
+}
+
+std::string Orbital::info() const
+{
+  std::string s;
+  s += "Classical orbital elements:\n";
+  s += "e:"  + std::to_string(classicalOrbitalElements_.e) + "\n";
+  s += "h: " + std::to_string(classicalOrbitalElements_.h) + "\n";
+  s += "inclination: " + std::to_string(classicalOrbitalElements_.inclination) + "\n";
+  s += "omega: " + std::to_string(classicalOrbitalElements_.omega) + "\n";
+  s += "Omega: " + std::to_string(classicalOrbitalElements_.Omega) + "\n";
+  s += "theta: " + std::to_string(classicalOrbitalElements_.theta) + "\n";
+
+  s += "Time since perigee: " + std::to_string(timeSincePerigee()) + "\n";
+  return s;
 }

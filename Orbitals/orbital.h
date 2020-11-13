@@ -69,6 +69,7 @@ public:
 
   double timeSincePerigee() const;
   void setTimeSincePerigee(double time);
+  void incrementTimeSincePerigee(double step);
 
   std::vector<PositionVelocity> orbitalPath(int numPoints) const;
 
@@ -100,6 +101,8 @@ public:
   double flightPathAngle(double theta) const;
 
   Orbital hohmannTransferTo(const Orbital& endOrbit) const;
+
+  std::string info() const;
 };
 
 #endif // ORBITAL_H

@@ -52,10 +52,26 @@ void OrbitalSystem::addLambertOrbit(
       Orbital::fromLambert(positionStart, positionEnd, deltaT, primaryBody_));
 }
 
+void OrbitalSystem::incrementTime(double step)
+{
+  for (auto& orbital : orbitals_)
+    orbital.incrementTimeSincePerigee(step);
+}
+
 std::string OrbitalSystem::info()
 {
-  std::string primaryBodyMsg = "Primary body: " + primaryBody_.name + "\n";
-  auto numOrbitals = std::to_string(static_cast<int>(orbitals_.size()));
-  std::string numOrbitalMsg = "num orbitals: " + numOrbitals + "\n";
-  return primaryBodyMsg + numOrbitalMsg;
+  std::string s;
+
+  // Primary body into
+  s += "Primary body: " + primaryBody_.name + "\n";
+
+  // System info
+  const auto numOrbitals = std::to_string(static_cast<int>(orbitals_.size()));
+  s += "num orbitals: " + numOrbitals + "\n";
+
+  // Info for each orbital
+  for (const auto& orbital : orbitals_)
+    s += orbital.info();
+
+  return s;
 }
