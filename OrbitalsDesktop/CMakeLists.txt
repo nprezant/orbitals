@@ -10,8 +10,9 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(QT NAMES Qt6 Qt5 COMPONENTS Core Quick Quick3D REQUIRED)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Quick Quick3D REQUIRED)
 
+# Add library for the orbitals interface and link to the static Orbitals library
 add_library(OrbitalsInterface orbitalsinterface.cpp)
-target_link_libraries(OrbitalsInterface Qt${QT_VERSION_MAJOR}::Core)
+target_link_libraries(OrbitalsInterface Qt${QT_VERSION_MAJOR}::Core Orbitals)
 
 add_executable(OrbitalsDesktop
     main.cpp

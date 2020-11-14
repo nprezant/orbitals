@@ -69,6 +69,31 @@ Window {
         }
     }
 
+    Button {
+        id: incrementTimeButton
+        anchors.left: parent.left
+        anchors.top: parent.top
+        anchors.margins: 20
+        anchors.topMargin: 80
+        text: "Increment Time"
+        implicitWidth: 150
+        enabled: true
+
+        background: Rectangle {
+            implicitWidth: 150
+            implicitHeight: 40
+            opacity: enabled ? 1 : 0.3
+            color: parent.down ? "#6b7080" : "#848895"
+            border.color: "#222840"
+            border.width: 1
+            radius: 5
+        }
+
+        onClicked: {
+            orbitalsInterface.incrementTime();
+        }
+    }
+
     OrbitalsInterface {
         id: orbitalsInterface
     }

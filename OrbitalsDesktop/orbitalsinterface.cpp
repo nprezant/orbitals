@@ -1,4 +1,5 @@
 #include "orbitalsinterface.h"
+#include <iostream>
 
 QString OrbitalsInterface::systemName() const
 {
@@ -8,4 +9,9 @@ QString OrbitalsInterface::systemName() const
 void OrbitalsInterface::setSystemName(const QString& newName)
 {
     systemName_ = newName;
+}
+
+void OrbitalsInterface::incrementTime()
+{
+    std::cout << "incrementing time";
 }

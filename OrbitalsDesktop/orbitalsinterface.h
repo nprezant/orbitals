@@ -2,6 +2,7 @@
 #define ORBITALSINTERFACE_H
 
 #include <QtCore>
+#include "orbitalsystem.h"
 
 class OrbitalsInterface : public QObject
 {
@@ -17,6 +18,8 @@ public:
 
     QString systemName() const;
     void setSystemName(const QString& newName);
+
+    Q_INVOKABLE void incrementTime();
 
 Q_SIGNALS:
     void systemNameChanged();
