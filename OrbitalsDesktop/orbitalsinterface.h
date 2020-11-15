@@ -12,13 +12,15 @@ class OrbitalsInterface : public QObject
 
 public:
     OrbitalsInterface()
-        : systemName_("Harry Potter")
+        : systemName_("Harry Potter"),
+          orbitalSystem_(OrbitalSystem::Earth())
         {
         }
 
     QString systemName() const;
     void setSystemName(const QString& newName);
 
+    Q_INVOKABLE void addOrbital();
     Q_INVOKABLE void incrementTime();
 
 Q_SIGNALS:
@@ -26,6 +28,7 @@ Q_SIGNALS:
 
 private:
     QString systemName_;
+    OrbitalSystem orbitalSystem_;
 
 };
 

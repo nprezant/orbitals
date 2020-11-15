@@ -31,6 +31,7 @@ Window {
 
         onClicked: {
             cubeSpawner.add();
+            orbitalsInterface.addOrbital();
         }
     }
 
