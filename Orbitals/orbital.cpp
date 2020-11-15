@@ -347,13 +347,13 @@ std::string Orbital::info() const
 {
   std::string s;
   s += "Classical orbital elements:\n";
-  s += "e:"  + std::to_string(classicalOrbitalElements_.e) + "\n";
-  s += "h: " + std::to_string(classicalOrbitalElements_.h) + "\n";
-  s += "inclination: " + std::to_string(classicalOrbitalElements_.inclination) + "\n";
-  s += "omega: " + std::to_string(classicalOrbitalElements_.omega) + "\n";
-  s += "Omega: " + std::to_string(classicalOrbitalElements_.Omega) + "\n";
-  s += "theta: " + std::to_string(classicalOrbitalElements_.theta) + "\n";
+  s += "\te: "  + std::to_string(classicalOrbitalElements_.e) + "\n";
+  s += "\th: " + std::to_string(classicalOrbitalElements_.h) + "\n";
+  s += "\tinclination: " + std::to_string(classicalOrbitalElements_.inclination) + "\n";
+  s += "\tomega: " + std::to_string(classicalOrbitalElements_.omega) + "\n";
+  s += "\tOmega: " + std::to_string(classicalOrbitalElements_.Omega) + "\n";
+  s += "\ttheta: " + std::to_string(classicalOrbitalElements_.theta) + "\n";
 
-  s += "Time since perigee: " + std::to_string(timeSincePerigee()) + "\n";
+  s += "\tTime since perigee: " + std::to_string(timeSincePerigee()) + "\n";
   return s;
 }
