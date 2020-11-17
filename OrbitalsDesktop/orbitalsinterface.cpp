@@ -24,13 +24,23 @@ void OrbitalsInterface::incrementTime()
     orbitalSystem_.incrementTime(10);
     std::cout << orbitalSystem_.info() << std::endl;
 
-    // OrbitalChangeData* o = new OrbitalChangeData();
-    auto index = 0;
-    auto changeType = OrbitalChangeData::ChangeType::Update;
-    auto px = 1.0;
-    auto py = 2.0;
-    auto pz = 3.0;
-    orbitalChangeDataVector_.append(new OrbitalChangeData(index, changeType, px, py, pz));
+    orbitalChangeDataVector_.clear();
+    int index = 0;
+    
+    for (const auto& orbital : orbitalSystem_)
+    {
+        const auto position = orbital.position();
+
+        orbitalChangeDataVector_.append(new OrbitalChangeData(
+            index,
+            OrbitalChangeData::Update,
+            position.X,
+            position.Y,
+            position.Z
+        ));
+
+        index++;
+    }
 
     // Emit signal that the orbital system changed
     orbitalChangeDataListChanged();

@@ -205,6 +205,9 @@ void Orbital::setTimeSincePerigee(double time)
       2 * std::atan(std::sqrt((1 + e) / (1 - e)) * std::tan(E / 2));
 
   classicalOrbitalElements_.theta = theta;
+
+  // Set classical orbital element to trigger position/velocity recalculation
+  setClassicalOrbitalElements(classicalOrbitalElements_);
 }
 
 void Orbital::incrementTimeSincePerigee(double step)

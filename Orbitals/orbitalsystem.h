@@ -40,6 +40,11 @@ public:
 
   // Information on this orbital system
   std::string info();
+
+  // Allow range based looping over the orbitals in the system.
+  // Only const iterator provided to prevent external code from modifying orbital properties directly.
+  std::vector<Orbital>::const_iterator begin() const { return orbitals_.begin(); }
+  std::vector<Orbital>::const_iterator end() const { return orbitals_.end(); }
 };
 
 #endif // ORBITALSYSTEM_H
