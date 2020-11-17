@@ -17,6 +17,7 @@ target_link_libraries(OrbitalsInterface Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSI
 add_executable(OrbitalsDesktop
     main.cpp
     qml.qrc
+    orbitalchangedata.h
 )
 
 target_compile_definitions(OrbitalsDesktop
