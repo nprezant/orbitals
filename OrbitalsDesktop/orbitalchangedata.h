@@ -7,12 +7,11 @@ class OrbitalChangeData : public QObject
 {
     Q_OBJECT
 
-    Q_PROPERTY(qint32 test READ test)
-    Q_PROPERTY(qint32 index MEMBER index)
+    Q_PROPERTY(int index MEMBER index)
     Q_PROPERTY(ChangeType changeType MEMBER changeType)
-    Q_PROPERTY(qreal positionX MEMBER positionX)
-    Q_PROPERTY(qreal positionY MEMBER positionY)
-    Q_PROPERTY(qreal positionZ MEMBER positionZ)
+    Q_PROPERTY(double positionX MEMBER positionX)
+    Q_PROPERTY(double positionY MEMBER positionY)
+    Q_PROPERTY(double positionZ MEMBER positionZ)
 
 public:
     enum ChangeType { Insert, Remove, Update, };
@@ -30,11 +29,6 @@ public:
 
     OrbitalChangeData() // This is required for compilation, probably for the QQmlListProperty
     {}
-
-    inline int test()
-    {
-        return 1;
-    }
 };
 
 #endif // ORBITALCHANGEDATA_H

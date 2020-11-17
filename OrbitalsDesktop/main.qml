@@ -216,27 +216,18 @@ Window {
             }
 
             function update(orbitalChangeDataList) {
-                console.log(orbitalChangeDataList);
-                console.log(typeof(orbitalChangeDataList));
-                console.log("length is " + orbitalChangeDataList.length);
-                var o1 = orbitalChangeDataList[0];
-                console.log(o1);
+                console.log("length of change list is " + orbitalChangeDataList.length);
 
                 for (var i=0; i<orbitalChangeDataList.length; i++)
                 {
-                    let o = orbitalChangeDataList[i];
-                    console.log("reading new item...");
-                    console.log("typeof = " + typeof(o));
-                    console.log("o = " + o);
-                    console.log("test = " + o.test);
-                    console.log("dne = " + o.dneadslkf);
-                    console.log("index = " + o.index);
-                    console.log("changeType = " + o.changeType);
-                    console.log("px = " + o.positionX);
-                    console.log("py = " + o.positionY);
-                    console.log("pz = " + o.positionZ);
+                    let orbitalData = orbitalChangeDataList[i];
+                    console.log("orbital data = " + orbitalData);
+                    console.log("index = " + orbitalData.index);
+                    console.log("changeType = " + orbitalData.changeType);
+                    console.log("px = " + orbitalData.positionX);
+                    console.log("py = " + orbitalData.positionY);
+                    console.log("pz = " + orbitalData.positionZ);
                 }
-                console.log("checked all orbital changes")
             }
         }
     }
