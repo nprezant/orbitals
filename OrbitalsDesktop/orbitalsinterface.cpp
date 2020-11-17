@@ -23,4 +23,9 @@ void OrbitalsInterface::incrementTime()
     std::cout << "incrementing time" << "\n";
     orbitalSystem_.incrementTime(10);
     std::cout << orbitalSystem_.info() << std::endl;
+
+    // OrbitalChangeData* o = new OrbitalChangeData();
+    appendChangeData(new OrbitalChangeData());
+
+    orbitalSystemChanged(orbitalChangeDataList());
 }

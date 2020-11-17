@@ -12,7 +12,7 @@ find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Quick Quick3D REQUIRED)
 
 # Add library for the orbitals interface and link to the static Orbitals library
 add_library(OrbitalsInterface orbitalsinterface.cpp)
-target_link_libraries(OrbitalsInterface Qt${QT_VERSION_MAJOR}::Core Orbitals)
+target_link_libraries(OrbitalsInterface Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Quick Orbitals)
 
 add_executable(OrbitalsDesktop
     main.cpp

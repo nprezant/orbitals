@@ -3,6 +3,7 @@ import QtQuick.Window 2.14
 import QtQuick.Controls 2.14
 import QtQuick3D 1.15
 import OrbitalsInterface 1.0
+import OrbitalChangeData 1.0
 
 Window {
     id: window
@@ -32,6 +33,7 @@ Window {
         onClicked: {
             cubeSpawner.add();
             orbitalsInterface.addOrbital();
+            orbitalSpawner.add(0,0,0)
         }
     }
 
@@ -97,6 +99,13 @@ Window {
 
     OrbitalsInterface {
         id: orbitalsInterface
+
+        onOrbitalSystemChanged: {
+            console.log("updating");
+            var orbitalChangeDataList = orbitalsInterface.orbitalChangeDataList;
+            orbitalSpawner.update(orbitalChangeDataList);
+            console.log("updated");
+        }
     }
 
     View3D {
@@ -190,6 +199,30 @@ Window {
                     removeButton.enabled = true;
                 }
                 countLabel.text = "Cubes in Scene: " + instances.length + "; Name: " + orbitalsInterface.systemName;
+            }
+        }
+
+        Node {
+            id: orbitalSpawner
+            property var instances: []
+            readonly property int maxInstances: 100
+
+            function add(xPos, yPos, zPos) {
+                let orbitalBodyComponent = Qt.createComponent("orbitalbody.qml");
+                let instance = orbitalBodyComponent.createObject(
+                        orbitalSpawner, { "x": xPos, "y": yPos, "z": zPos, });
+                instances.push(instance);
+                console.log("created orbital body at " + xPos + ", " + yPos + ", " + zPos);
+            }
+
+            function update(orbitalChangeDataList) {
+                console.log(orbitalChangeDataList);
+                console.log("length is " + orbitalChangeDataList.length);
+                for (var a in orbitalChangeDataList)
+                {
+                    console.log("thing in list");
+                }
+                console.log("checked all orbital changes")
             }
         }
     }
