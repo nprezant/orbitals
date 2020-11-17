@@ -18,6 +18,7 @@ add_executable(OrbitalsDesktop
     main.cpp
     qml.qrc
     orbitalchangedata.h
+    qqmlvector.h
 )
 
 target_compile_definitions(OrbitalsDesktop
