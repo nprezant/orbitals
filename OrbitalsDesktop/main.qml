@@ -219,8 +219,12 @@ Window {
                 console.log(orbitalChangeDataList);
                 console.log(typeof(orbitalChangeDataList));
                 console.log("length is " + orbitalChangeDataList.length);
-                for (var o in orbitalChangeDataList)
+                var o1 = orbitalChangeDataList[0];
+                console.log(o1);
+
+                for (var i=0; i<orbitalChangeDataList.length; i++)
                 {
+                    let o = orbitalChangeDataList[i];
                     console.log("reading new item...");
                     console.log("typeof = " + typeof(o));
                     console.log("o = " + o);
