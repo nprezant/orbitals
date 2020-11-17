@@ -221,6 +221,12 @@ Window {
                 for (var i=0; i<orbitalChangeDataList.length; i++)
                 {
                     let orbitalData = orbitalChangeDataList[i];
+                    let guiInstance = instances[i];
+
+                    guiInstance.x = orbitalData.positionX / 100;
+                    guiInstance.y = orbitalData.positionY / 100;
+                    guiInstance.z = orbitalData.positionZ / 100;
+
                     console.log("orbital data = " + orbitalData);
                     console.log("index = " + orbitalData.index);
                     console.log("changeType = " + orbitalData.changeType);

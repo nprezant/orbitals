@@ -21,12 +21,12 @@ void OrbitalsInterface::addOrbital()
 void OrbitalsInterface::incrementTime()
 {
     std::cout << "incrementing time" << "\n";
-    orbitalSystem_.incrementTime(10);
+    orbitalSystem_.incrementTime(200);
     std::cout << orbitalSystem_.info() << std::endl;
 
     orbitalChangeDataVector_.clear();
     int index = 0;
-    
+
     for (const auto& orbital : orbitalSystem_)
     {
         const auto position = orbital.position();
