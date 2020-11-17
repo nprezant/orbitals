@@ -25,8 +25,13 @@ void OrbitalsInterface::incrementTime()
     std::cout << orbitalSystem_.info() << std::endl;
 
     // OrbitalChangeData* o = new OrbitalChangeData();
-    orbitalChangeDataVector_.append(new OrbitalChangeData());
+    auto index = 0;
+    auto changeType = OrbitalChangeData::ChangeType::Update;
+    auto px = 1.0;
+    auto py = 2.0;
+    auto pz = 3.0;
+    orbitalChangeDataVector_.append(new OrbitalChangeData(index, changeType, px, py, pz));
 
     // Emit signal that the orbital system changed
-    orbitalSystemChanged();
+    orbitalChangeDataListChanged();
 }

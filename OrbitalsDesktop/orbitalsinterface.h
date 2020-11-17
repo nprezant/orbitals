@@ -13,7 +13,7 @@ class OrbitalsInterface : public QObject
     Q_OBJECT
 
     Q_PROPERTY(QString systemName READ systemName WRITE setSystemName NOTIFY systemNameChanged)
-    Q_PROPERTY(QQmlListProperty<OrbitalChangeData> orbitalChangeDataList READ orbitalChangeDataList NOTIFY orbitalSystemChanged)
+    Q_PROPERTY(QQmlListProperty<OrbitalChangeData> orbitalChangeDataList READ orbitalChangeDataList NOTIFY orbitalChangeDataListChanged)
 
 public:
     OrbitalsInterface()
@@ -35,7 +35,7 @@ public:
 
 Q_SIGNALS:
     void systemNameChanged();
-    void orbitalSystemChanged();
+    void orbitalChangeDataListChanged();
 
 private:
     QString systemName_;

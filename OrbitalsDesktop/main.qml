@@ -100,7 +100,7 @@ Window {
     OrbitalsInterface {
         id: orbitalsInterface
 
-        onOrbitalSystemChanged: {
+        onOrbitalChangeDataListChanged: {
             console.log("updating");
             var orbitalChangeDataList = orbitalsInterface.orbitalChangeDataList;
             orbitalSpawner.update(orbitalChangeDataList);
@@ -217,10 +217,20 @@ Window {
 
             function update(orbitalChangeDataList) {
                 console.log(orbitalChangeDataList);
+                console.log(typeof(orbitalChangeDataList));
                 console.log("length is " + orbitalChangeDataList.length);
-                for (var a in orbitalChangeDataList)
+                for (var o in orbitalChangeDataList)
                 {
-                    console.log("thing in list");
+                    console.log("reading new item...");
+                    console.log("typeof = " + typeof(o));
+                    console.log("o = " + o);
+                    console.log("test = " + o.test);
+                    console.log("dne = " + o.dneadslkf);
+                    console.log("index = " + o.index);
+                    console.log("changeType = " + o.changeType);
+                    console.log("px = " + o.positionX);
+                    console.log("py = " + o.positionY);
+                    console.log("pz = " + o.positionZ);
                 }
                 console.log("checked all orbital changes")
             }
