@@ -26,6 +26,9 @@ public:
   // Add an existing orbital to this system.
   void addOrbital(const Orbital& orbital);
 
+  // Remove a specific orbital from the system
+  void removeOrbital(int index);
+
   // Create and add new orbits to the system
   void addClassicalOrbitalElementsOrbit(const ClassicalOrbitalElements& classicalOrbitalElements);
   void addPositionVelocityOrbit(const Vector3& position, const Vector3& velocity);

@@ -9,6 +9,11 @@ void OrbitalSystem::addOrbital(const Orbital& orbital)
   orbitals_.push_back(orbital);
 }
 
+void OrbitalSystem::removeOrbital(int index)
+{
+  orbitals_.erase(orbitals_.begin() + index);
+}
+
 void OrbitalSystem::addClassicalOrbitalElementsOrbit(
     const ClassicalOrbitalElements& classicalOrbitalElements)
 {

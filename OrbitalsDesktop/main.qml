@@ -68,6 +68,7 @@ Window {
         onClicked: {
             if (cubeSpawner.instances.length > 0)
                 cubeSpawner.remove();
+                orbitalsInterface.removeOrbital(orbitalSpawner.instances.length - 1); // Remove last orbital
         }
     }
 
@@ -231,7 +232,14 @@ Window {
                     else if (changeType == OrbitalChangeData.Remove)
                     {
                         // Remove existing instance
-                        console.log("not implemented 'remove' yet");
+                        let index = orbitalData.index;
+
+                        let instance = instances[index];
+                        instance.destroy();
+
+                        // Splice is a fancy way to remove by "splicing in" at the index position,
+                        // removing 1 item, then not adding any others
+                        instances.splice(index, 1);
                     }
                     else if (changeType == OrbitalChangeData.Update)
                     {

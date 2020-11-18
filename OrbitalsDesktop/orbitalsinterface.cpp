@@ -34,6 +34,23 @@ void OrbitalsInterface::addOrbital()
     orbitalChangeDataListChanged();
 }
 
+void OrbitalsInterface::removeOrbital(int index)
+{
+    orbitalSystem_.removeOrbital(index);
+
+    orbitalChangeDataVector_.clear();
+    orbitalChangeDataVector_.append(new OrbitalChangeData(
+        index,
+        OrbitalChangeData::Remove,
+        0, // Position NA for removing
+        0, // Position NA for removing
+        0 // Position NA for removing
+    ));
+
+    // Emit signal that the orbital system changed
+    orbitalChangeDataListChanged();
+}
+
 void OrbitalsInterface::incrementTime()
 {
     std::cout << "incrementing time" << "\n";

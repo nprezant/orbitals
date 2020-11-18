@@ -31,6 +31,7 @@ public:
     }
 
     Q_INVOKABLE void addOrbital();
+    Q_INVOKABLE void removeOrbital(int index);
     Q_INVOKABLE void incrementTime();
 
 Q_SIGNALS:
