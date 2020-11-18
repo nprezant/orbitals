@@ -33,7 +33,6 @@ Window {
         onClicked: {
             cubeSpawner.add();
             orbitalsInterface.addOrbital();
-            // orbitalSpawner.add(0,0,0);
         }
     }
 
@@ -200,14 +199,6 @@ Window {
             property var instances: []
             readonly property int maxInstances: 100
 
-            function add(xPos, yPos, zPos) {
-                let orbitalBodyComponent = Qt.createComponent("orbitalbody.qml");
-                let instance = orbitalBodyComponent.createObject(
-                        orbitalSpawner, { "x": xPos, "y": yPos, "z": zPos, });
-                instances.push(instance);
-                console.log("created orbital body at " + xPos + ", " + yPos + ", " + zPos);
-            }
-
             function update(orbitalChangeDataList) {
                 console.log("length of change list is " + orbitalChangeDataList.length);
                 console.log("primary body size " + primaryBody.bounds);
@@ -229,7 +220,13 @@ Window {
                     if (changeType == OrbitalChangeData.Add)
                     {
                         // Create new instance
-                        add(orbitalData.positionX / 10, orbitalData.positionY / 10, orbitalData.positionZ / 10);
+                        let xPos = orbitalData.positionX / 10;
+                        let yPos = orbitalData.positionY / 10;
+                        let zPos = orbitalData.positionZ / 10;
+                        let orbitalBodyComponent = Qt.createComponent("orbitalbody.qml");
+                        let instance = orbitalBodyComponent.createObject(
+                            orbitalSpawner, { "x": xPos, "y": yPos, "z": zPos, });
+                        instances.push(instance);
                     }
                     else if (changeType == OrbitalChangeData.Remove)
                     {
