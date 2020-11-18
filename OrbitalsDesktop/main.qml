@@ -31,7 +31,6 @@ Window {
         }
 
         onClicked: {
-            cubeSpawner.add();
             orbitalsInterface.addOrbital();
         }
     }
@@ -66,9 +65,10 @@ Window {
         }
 
         onClicked: {
-            if (cubeSpawner.instances.length > 0)
-                cubeSpawner.remove();
+            if (orbitalSpawner.instances.length > 0)
+            {
                 orbitalsInterface.removeOrbital(orbitalSpawner.instances.length - 1); // Remove last orbital
+            }
         }
     }
 
@@ -151,51 +151,6 @@ Window {
         }
 
         Node {
-            id: cubeSpawner
-            property var instances: []
-            readonly property int maxInstances: 100
-
-            function add() {
-                var xPos = 0
-                var yPos = 100
-                var zPos = 0
-
-                let cubeComponent = Qt.createComponent("orbitalbody.qml");
-                let instance = cubeComponent.createObject(
-                        cubeSpawner, { "x": xPos, "y": yPos, "z": zPos, });
-                            // "scale": Qt.vector3d(100, 100, 100)});
-                instances.push(instance);
-                updateButtonState();
-            }
-
-            function remove() {
-                // Remove last item in instances list
-                let instance = instances.pop();
-                instance.destroy();
-                updateButtonState();
-            }
-
-            function updateButtonState() {
-                if (instances.length === 0)
-                {
-                    addButton.enabled = true;
-                    removeButton.enabled = false;
-                }
-                else if (instances.length === maxInstances)
-                {
-                    addButton.enabled = false;
-                    removeButton.enabled = true;
-                }
-                else
-                {
-                    addButton.enabled = true;
-                    removeButton.enabled = true;
-                }
-                countLabel.text = "Cubes in Scene: " + instances.length + "; Name: " + orbitalsInterface.systemName;
-            }
-        }
-
-        Node {
             id: orbitalSpawner
             property var instances: []
             readonly property int maxInstances: 100
@@ -252,6 +207,26 @@ Window {
                         guiInstance.z = orbitalData.positionZ / 10;
                     }
                 }
+                updateButtonState();
+            }
+
+            function updateButtonState() {
+                if (instances.length === 0)
+                {
+                    addButton.enabled = true;
+                    removeButton.enabled = false;
+                }
+                else if (instances.length === maxInstances)
+                {
+                    addButton.enabled = false;
+                    removeButton.enabled = true;
+                }
+                else
+                {
+                    addButton.enabled = true;
+                    removeButton.enabled = true;
+                }
+                countLabel.text = "Orbitals in Scene: " + instances.length + "; System name: " + orbitalsInterface.systemName;
             }
         }
     }
