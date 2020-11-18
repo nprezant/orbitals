@@ -16,6 +16,22 @@ void OrbitalsInterface::addOrbital()
     std::cout << "adding orbital" << "\n";
     orbitalSystem_.addCircularOrbitRadius(10000);
     std::cout << orbitalSystem_.info() << std::endl;
+
+    const auto index = orbitalSystem_.size() - 1;
+    const auto orbital = orbitalSystem_[index];
+    const auto position = orbital.position();
+
+    orbitalChangeDataVector_.clear();
+    orbitalChangeDataVector_.append(new OrbitalChangeData(
+        0, // N/A for adding
+        OrbitalChangeData::Add,
+        position.X,
+        position.Y,
+        position.Z
+    ));
+
+    // Emit signal that the orbital system changed
+    orbitalChangeDataListChanged();
 }
 
 void OrbitalsInterface::incrementTime()

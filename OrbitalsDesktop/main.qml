@@ -33,7 +33,7 @@ Window {
         onClicked: {
             cubeSpawner.add();
             orbitalsInterface.addOrbital();
-            orbitalSpawner.add(0,0,0)
+            // orbitalSpawner.add(0,0,0);
         }
     }
 
@@ -101,10 +101,8 @@ Window {
         id: orbitalsInterface
 
         onOrbitalChangeDataListChanged: {
-            console.log("updating");
             var orbitalChangeDataList = orbitalsInterface.orbitalChangeDataList;
             orbitalSpawner.update(orbitalChangeDataList);
-            console.log("updated");
         }
     }
 
@@ -218,20 +216,36 @@ Window {
 
                 for (var i=0; i<orbitalChangeDataList.length; i++)
                 {
+                    // Add, remove, or update based on change type
                     let orbitalData = orbitalChangeDataList[i];
-                    let guiInstance = instances[i];
-
-                    // km / 10
-                    guiInstance.x = orbitalData.positionX / 10;
-                    guiInstance.y = orbitalData.positionY / 10;
-                    guiInstance.z = orbitalData.positionZ / 10;
-
                     console.log("orbital data = " + orbitalData);
                     console.log("index = " + orbitalData.index);
                     console.log("changeType = " + orbitalData.changeType);
                     console.log("px = " + orbitalData.positionX);
                     console.log("py = " + orbitalData.positionY);
                     console.log("pz = " + orbitalData.positionZ);
+
+                    let changeType = orbitalData.changeType;
+                    if (changeType == OrbitalChangeData.Add)
+                    {
+                        // Create new instance
+                        add(orbitalData.positionX / 10, orbitalData.positionY / 10, orbitalData.positionZ / 10);
+                    }
+                    else if (changeType == OrbitalChangeData.Remove)
+                    {
+                        // Remove existing instance
+                        console.log("not implemented 'remove' yet");
+                    }
+                    else if (changeType == OrbitalChangeData.Update)
+                    {
+                        // Update existing instance
+                        let guiInstance = instances[i];
+
+                        // km / 10
+                        guiInstance.x = orbitalData.positionX / 10;
+                        guiInstance.y = orbitalData.positionY / 10;
+                        guiInstance.z = orbitalData.positionZ / 10;
+                    }
                 }
             }
         }

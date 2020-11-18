@@ -45,6 +45,18 @@ public:
   // Only const iterator provided to prevent external code from modifying orbital properties directly.
   std::vector<Orbital>::const_iterator begin() const { return orbitals_.begin(); }
   std::vector<Orbital>::const_iterator end() const { return orbitals_.end(); }
+
+  // Allow indexing access to orbitals
+  Orbital operator[](const int index)
+  {
+    return orbitals_[index];
+  }
+
+  // Number of orbitals
+  std::size_t size()
+  {
+    return orbitals_.size();
+  }
 };
 
 #endif // ORBITALSYSTEM_H

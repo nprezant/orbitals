@@ -14,7 +14,7 @@ class OrbitalChangeData : public QObject
     Q_PROPERTY(double positionZ MEMBER positionZ)
 
 public:
-    enum ChangeType { Insert, Remove, Update, };
+    enum ChangeType { Add, Remove, Update, };
     Q_ENUM(ChangeType)
 
     int index;
