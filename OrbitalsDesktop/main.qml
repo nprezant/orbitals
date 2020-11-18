@@ -127,32 +127,27 @@ Window {
         }
 
         PerspectiveCamera {
-            position: Qt.vector3d(0, 200, 300)
-            eulerRotation.x: -30
+            position: Qt.vector3d(0, 1, 1).times(5250)
+            eulerRotation.x: -45
         }
 
         Model {
-            source: "#Sphere"
-            position: Qt.vector3d(0, 150, 0)
+            id: primaryBody
+            source: "#Cube"
+            position: Qt.vector3d(0, 0, 0)
+            scale: Qt.vector3d(1, 1, 1).times(1 / bounds.maximum.x).times(637) // radius of earth in km e-1
 
             materials: [ DefaultMaterial {
                     diffuseColor: "green"
                 }
             ]
 
-            SequentialAnimation on y {
+            SequentialAnimation on eulerRotation {
                 loops: Animation.Infinite
-                NumberAnimation {
-                    duration: 3000
-                    to: -150
-                    from: 150
-                    easing.type:Easing.InQuad
-                }
-                NumberAnimation {
-                    duration: 3000
-                    to: 150
-                    from: -150
-                    easing.type:Easing.OutQuad
+                PropertyAnimation {
+                    duration: 10000
+                    to: Qt.vector3d(0, 0, 0)
+                    from: Qt.vector3d(0, -360, 0)
                 }
             }
         }
@@ -217,15 +212,19 @@ Window {
 
             function update(orbitalChangeDataList) {
                 console.log("length of change list is " + orbitalChangeDataList.length);
+                console.log("primary body size " + primaryBody.bounds);
+                console.log("primary body size " + primaryBody.bounds.maximum);
+                console.log("primary body size " + primaryBody.bounds.minimum);
 
                 for (var i=0; i<orbitalChangeDataList.length; i++)
                 {
                     let orbitalData = orbitalChangeDataList[i];
                     let guiInstance = instances[i];
 
-                    guiInstance.x = orbitalData.positionX / 100;
-                    guiInstance.y = orbitalData.positionY / 100;
-                    guiInstance.z = orbitalData.positionZ / 100;
+                    // km / 10
+                    guiInstance.x = orbitalData.positionX / 10;
+                    guiInstance.y = orbitalData.positionY / 10;
+                    guiInstance.z = orbitalData.positionZ / 10;
 
                     console.log("orbital data = " + orbitalData);
                     console.log("index = " + orbitalData.index);
