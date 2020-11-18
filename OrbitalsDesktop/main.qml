@@ -113,7 +113,7 @@ Window {
         renderMode: View3D.Underlay
 
         environment: SceneEnvironment {
-            clearColor: "yellow"
+            clearColor: "lightsteelblue"
             backgroundMode: SceneEnvironment.Color
             antialiasingMode: SceneEnvironment.MSAA
             antialiasingQuality: SceneEnvironment.High
