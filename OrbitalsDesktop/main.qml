@@ -1,12 +1,12 @@
-import QtQuick 2.15 as QQ
+import QtQuick 2.15 as QQ2
 import QtQuick.Window 2.14 as W
 import QtQuick.Controls 2.14 as QQControls
 import QtQuick3D 1.15 as QQ3D
 
 // import Qt3D.Core 2.0
-// import Qt3D.Render 2.0
+// import Qt3D.Render 2.0 as QRenderer
 // import Qt3D.Input 2.0
-// import Qt3D.Extras 2.15
+// import Qt3D.Extras 2.15 as Q3DExtras
 
 import OrbitalsInterface 1.0
 import OrbitalChangeData 1.0
@@ -26,7 +26,7 @@ W.Window {
         text: "Add Orbital"
         implicitWidth: 150
 
-        background: QQ.Rectangle {
+        background: QQ2.Rectangle {
             implicitWidth: 150
             implicitHeight: 40
             opacity: enabled ? 1 : 0.3
@@ -60,7 +60,7 @@ W.Window {
         implicitWidth: 150
         enabled: false
 
-        background: QQ.Rectangle {
+        background: QQ2.Rectangle {
             implicitWidth: 150
             implicitHeight: 40
             opacity: enabled ? 1 : 0.3
@@ -88,7 +88,7 @@ W.Window {
         implicitWidth: 150
         enabled: true
 
-        background: QQ.Rectangle {
+        background: QQ2.Rectangle {
             implicitWidth: 150
             implicitHeight: 40
             opacity: enabled ? 1 : 0.3
@@ -137,19 +137,27 @@ W.Window {
             // lookAt: Qt.vector3d(0,0,0)
         }
 
-        // Camera {
+        // QRenderer.Camera {
         //     id: camera
         //     projectionType: CameraLens.PerspectiveProjection
         //     fieldOfView: 45
         //     aspectRatio: 16/9
         //     nearPlane : 0.1
-        //     farPlane : 1000.0
-        //     position: Qt.vector3d( 0.0, 0.0, -40.0 )
-        //     upVector: Qt.vector3d( 0.0, 1.0, 0.0 )
+        //     farPlane : 10000.0
+        //     position: Qt.vector3d(0, 1, 1).times(5250)
+        //     // upVector: Qt.vector3d( 0.0, 1.0, 1.0 )
         //     viewCenter: Qt.vector3d( 0.0, 0.0, 0.0 )
         // }
 
-        // OrbitCameraController {
+        // RenderSettings {
+        //     activeFrameGraph: ForwardRenderer {
+        //         clearColor: Qt.rgba(0, 0.5, 1, 1)
+        //         camera: camera
+        //         showDebugOverlay: true
+        //     }
+        // }
+
+        // Q3DExtras.OrbitCameraController {
         //     camera: camera
         // }
 
@@ -164,9 +172,9 @@ W.Window {
                 }
             ]
 
-            QQ.SequentialAnimation on eulerRotation {
-                loops: QQ.Animation.Infinite
-                QQ.PropertyAnimation {
+            QQ2.SequentialAnimation on eulerRotation {
+                loops: QQ2.Animation.Infinite
+                QQ2.PropertyAnimation {
                     duration: 10000
                     to: Qt.vector3d(0, 0, 0)
                     from: Qt.vector3d(0, -360, 0)
