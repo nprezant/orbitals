@@ -1,18 +1,24 @@
-import QtQuick 2.15
-import QtQuick.Window 2.14
-import QtQuick.Controls 2.14
-import QtQuick3D 1.15
+import QtQuick 2.15 as QQ
+import QtQuick.Window 2.14 as W
+import QtQuick.Controls 2.14 as QQControls
+import QtQuick3D 1.15 as QQ3D
+
+// import Qt3D.Core 2.0
+// import Qt3D.Render 2.0
+// import Qt3D.Input 2.0
+// import Qt3D.Extras 2.15
+
 import OrbitalsInterface 1.0
 import OrbitalChangeData 1.0
 
-Window {
+W.Window {
     id: window
     width: 1280
     height: 720
     visible: true
     title: qsTr("Orbitals Desktop")
 
-    Button {
+    QQControls.Button {
         id: addButton
         anchors.left: parent.left
         anchors.top: parent.top
@@ -20,7 +26,7 @@ Window {
         text: "Add Orbital"
         implicitWidth: 150
 
-        background: Rectangle {
+        background: QQ.Rectangle {
             implicitWidth: 150
             implicitHeight: 40
             opacity: enabled ? 1 : 0.3
@@ -35,7 +41,7 @@ Window {
         }
     }
 
-    Label {
+    QQControls.Label {
         id: countLabel
         anchors.top: parent.top
         anchors.horizontalCenter: parent.horizontalCenter
@@ -45,7 +51,7 @@ Window {
         color: "#848895"
     }
 
-    Button {
+    QQControls.Button {
         id: removeButton
         anchors.right: parent.right
         anchors.top: parent.top
@@ -54,7 +60,7 @@ Window {
         implicitWidth: 150
         enabled: false
 
-        background: Rectangle {
+        background: QQ.Rectangle {
             implicitWidth: 150
             implicitHeight: 40
             opacity: enabled ? 1 : 0.3
@@ -72,7 +78,7 @@ Window {
         }
     }
 
-    Button {
+    QQControls.Button {
         id: incrementTimeButton
         anchors.left: parent.left
         anchors.top: parent.top
@@ -82,7 +88,7 @@ Window {
         implicitWidth: 150
         enabled: true
 
-        background: Rectangle {
+        background: QQ.Rectangle {
             implicitWidth: 150
             implicitHeight: 40
             opacity: enabled ? 1 : 0.3
@@ -106,43 +112,61 @@ Window {
         }
     }
 
-    View3D {
+    QQ3D.View3D {
         id: view
         anchors.fill: parent
         camera: camera
-        renderMode: View3D.Underlay
+        renderMode: QQ3D.View3D.Underlay
 
-        environment: SceneEnvironment {
+        environment: QQ3D.SceneEnvironment {
             clearColor: "lightsteelblue"
-            backgroundMode: SceneEnvironment.Color
-            antialiasingMode: SceneEnvironment.MSAA
-            antialiasingQuality: SceneEnvironment.High
+            backgroundMode: QQ3D.SceneEnvironment.Color
+            antialiasingMode: QQ3D.SceneEnvironment.MSAA
+            antialiasingQuality: QQ3D.SceneEnvironment.High
         }
 
-        DirectionalLight {
+        QQ3D.DirectionalLight {
             eulerRotation.x: -30
             eulerRotation.y: -70
         }
 
-        PerspectiveCamera {
+        QQ3D.PerspectiveCamera {
+            id: camera
             position: Qt.vector3d(0, 1, 1).times(5250)
             eulerRotation.x: -45
+            // lookAt: Qt.vector3d(0,0,0)
         }
 
-        Model {
+        // Camera {
+        //     id: camera
+        //     projectionType: CameraLens.PerspectiveProjection
+        //     fieldOfView: 45
+        //     aspectRatio: 16/9
+        //     nearPlane : 0.1
+        //     farPlane : 1000.0
+        //     position: Qt.vector3d( 0.0, 0.0, -40.0 )
+        //     upVector: Qt.vector3d( 0.0, 1.0, 0.0 )
+        //     viewCenter: Qt.vector3d( 0.0, 0.0, 0.0 )
+        // }
+
+        // OrbitCameraController {
+        //     camera: camera
+        // }
+
+        QQ3D.Model {
             id: primaryBody
             source: "#Cube"
             position: Qt.vector3d(0, 0, 0)
             scale: Qt.vector3d(1, 1, 1).times(1 / bounds.maximum.x).times(637) // radius of earth in km e-1
 
-            materials: [ DefaultMaterial {
+            materials: [ QQ3D.DefaultMaterial {
                     diffuseColor: "green"
                 }
             ]
 
-            SequentialAnimation on eulerRotation {
-                loops: Animation.Infinite
-                PropertyAnimation {
+            QQ.SequentialAnimation on eulerRotation {
+                loops: QQ.Animation.Infinite
+                QQ.PropertyAnimation {
                     duration: 10000
                     to: Qt.vector3d(0, 0, 0)
                     from: Qt.vector3d(0, -360, 0)
@@ -150,7 +174,7 @@ Window {
             }
         }
 
-        Node {
+        QQ3D.Node {
             id: orbitalSpawner
             property var instances: []
             readonly property int maxInstances: 100
