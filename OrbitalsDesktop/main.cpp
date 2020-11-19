@@ -10,7 +10,7 @@ int main(int argc, char* argv[])
 
   QGuiApplication app(argc, argv);
   qmlRegisterType<OrbitalsInterface>("OrbitalsInterface", 1, 0, "OrbitalsInterface");
-  qmlRegisterType<OrbitalChangeData>("OrbitalChangeData", 1, 0, "OrbitalChangeData");
+  qmlRegisterType<OrbitalChangeData>("OrbitalsInterface", 1, 0, "OrbitalChangeData");
 
   QSurfaceFormat::setDefaultFormat(QQuick3D::idealSurfaceFormat(4));
 

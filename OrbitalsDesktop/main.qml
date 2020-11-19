@@ -9,7 +9,6 @@ import QtQuick3D 1.15 as QQ3D
 // import Qt3D.Extras 2.15 as Q3DExtras
 
 import OrbitalsInterface 1.0
-import OrbitalChangeData 1.0
 
 W.Window {
     id: window
