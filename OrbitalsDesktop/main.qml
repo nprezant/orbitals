@@ -4,11 +4,6 @@ import QtQuick.Controls 2.14 as QQControls
 import QtQuick3D 1.15 as QQ3D
 import QtQuick3D.Helpers 1.15 as Helpers
 
-// import Qt3D.Core 2.0
-// import Qt3D.Render 2.0 as QRenderer
-// import Qt3D.Input 2.0
-// import Qt3D.Extras 2.15 as Q3DExtras
-
 import OrbitalsInterface 1.0
 
 W.Window {
@@ -155,6 +150,37 @@ W.Window {
                 }
                 countLabel.text = "Orbitals in Scene: " + instances.length + "; System name: " + orbitalsInterface.systemName;
             }
+        }
+    }
+
+    QQ2.Timer {
+        interval: 250
+        running: startStopCheckBox.checked ? true : false
+        repeat: true
+        onTriggered: {
+            console.log("running timer, incrementing time");
+            orbitalsInterface.incrementTime();
+        }
+    }
+
+    QQControls.CheckBox {
+        id: startStopCheckBox
+        checked: false
+        anchors.left: parent.left
+        anchors.top: incrementTimeButton.top
+        anchors.margins: 20
+        anchors.topMargin: 60
+        text: "Start animation"
+
+
+        background: QQ2.Rectangle {
+            implicitWidth: 150
+            implicitHeight: 40
+            opacity: 1
+            color: parent.down ? "#6b7080" : "#848895"
+            border.color: "#222840"
+            border.width: 1
+            radius: 5
         }
     }
 
