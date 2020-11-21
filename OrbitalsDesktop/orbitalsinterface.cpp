@@ -1,5 +1,6 @@
 #include "orbitalsinterface.h"
 #include <iostream>
+#include <stdlib.h> // rand
 
 QString OrbitalsInterface::systemName() const
 {
@@ -13,10 +14,11 @@ void OrbitalsInterface::setSystemName(const QString& newName)
 
 void OrbitalsInterface::addOrbital()
 {
-    orbitalSystem_.addCircularOrbitRadius(10000);
+    const auto r = rand() % 10000 + 1; // Number between 0 and 10000
+    orbitalSystem_.addCircularOrbitRadius(9000 + r);
 
     const auto index = orbitalSystem_.size() - 1;
-    const auto orbital = orbitalSystem_[index];
+    auto orbital = orbitalSystem_[index];
     const auto position = orbital.position();
 
     orbitalChangeDataVector_.clear();
@@ -51,7 +53,7 @@ void OrbitalsInterface::removeOrbital(int index)
 
 void OrbitalsInterface::incrementTime()
 {
-    orbitalSystem_.incrementTime(200);
+    orbitalSystem_.incrementTime(20);
 
     orbitalChangeDataVector_.clear();
     int index = 0;

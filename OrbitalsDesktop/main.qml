@@ -145,7 +145,7 @@ W.Window {
     }
 
     QQ2.Timer {
-        interval: 250
+        interval: 1000 / 60
         running: startStopCheckBox.checked ? true : false
         repeat: true
         onTriggered: {
