@@ -18,91 +18,6 @@ W.Window {
     visible: true
     title: qsTr("Orbitals Desktop")
 
-    QQControls.Button {
-        id: addButton
-        anchors.left: parent.left
-        anchors.top: parent.top
-        anchors.margins: 20
-        text: "Add Orbital"
-        implicitWidth: 150
-
-        background: QQ2.Rectangle {
-            implicitWidth: 150
-            implicitHeight: 40
-            opacity: enabled ? 1 : 0.3
-            color: parent.down ? "#6b7080" : "#848895"
-            border.color: "#222840"
-            border.width: 1
-            radius: 5
-        }
-
-        onClicked: {
-            orbitalsInterface.addOrbital();
-        }
-    }
-
-    QQControls.Label {
-        id: countLabel
-        anchors.top: parent.top
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.margins: 20
-        font.pointSize: 20
-        font.bold: true
-        color: "#848895"
-    }
-
-    QQControls.Button {
-        id: removeButton
-        anchors.right: parent.right
-        anchors.top: parent.top
-        anchors.margins: 20
-        text: "Remove Orbital"
-        implicitWidth: 150
-        enabled: false
-
-        background: QQ2.Rectangle {
-            implicitWidth: 150
-            implicitHeight: 40
-            opacity: enabled ? 1 : 0.3
-            color: parent.down ? "#6b7080" : "#848895"
-            border.color: "#222840"
-            border.width: 1
-            radius: 5
-        }
-
-        onClicked: {
-            if (orbitalSpawner.instances.length > 0)
-            {
-                orbitalsInterface.removeOrbital(orbitalSpawner.instances.length - 1); // Remove last orbital
-            }
-        }
-    }
-
-    QQControls.Button {
-        id: incrementTimeButton
-        anchors.left: parent.left
-        anchors.top: parent.top
-        anchors.margins: 20
-        anchors.topMargin: 80
-        text: "Increment Time"
-        implicitWidth: 150
-        enabled: true
-
-        background: QQ2.Rectangle {
-            implicitWidth: 150
-            implicitHeight: 40
-            opacity: enabled ? 1 : 0.3
-            color: parent.down ? "#6b7080" : "#848895"
-            border.color: "#222840"
-            border.width: 1
-            radius: 5
-        }
-
-        onClicked: {
-            orbitalsInterface.incrementTime();
-        }
-    }
-
     OrbitalsInterface {
         id: orbitalsInterface
 
@@ -139,7 +54,6 @@ W.Window {
 
         Helpers.WasdController {
             controlledObject: camera
-
         }
 
         QQ3D.Model {
@@ -241,6 +155,91 @@ W.Window {
                 }
                 countLabel.text = "Orbitals in Scene: " + instances.length + "; System name: " + orbitalsInterface.systemName;
             }
+        }
+    }
+
+    QQControls.Button {
+        id: addButton
+        anchors.left: parent.left
+        anchors.top: parent.top
+        anchors.margins: 20
+        text: "Add Orbital"
+        implicitWidth: 150
+
+        background: QQ2.Rectangle {
+            implicitWidth: 150
+            implicitHeight: 40
+            opacity: enabled ? 1 : 0.3
+            color: parent.down ? "#6b7080" : "#848895"
+            border.color: "#222840"
+            border.width: 1
+            radius: 5
+        }
+
+        onClicked: {
+            orbitalsInterface.addOrbital();
+        }
+    }
+
+    QQControls.Label {
+        id: countLabel
+        anchors.top: parent.top
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.margins: 20
+        font.pointSize: 20
+        font.bold: true
+        color: "#848895"
+    }
+
+    QQControls.Button {
+        id: removeButton
+        anchors.right: parent.right
+        anchors.top: parent.top
+        anchors.margins: 20
+        text: "Remove Orbital"
+        implicitWidth: 150
+        enabled: false
+
+        background: QQ2.Rectangle {
+            implicitWidth: 150
+            implicitHeight: 40
+            opacity: enabled ? 1 : 0.3
+            color: parent.down ? "#6b7080" : "#848895"
+            border.color: "#222840"
+            border.width: 1
+            radius: 5
+        }
+
+        onClicked: {
+            if (orbitalSpawner.instances.length > 0)
+            {
+                orbitalsInterface.removeOrbital(orbitalSpawner.instances.length - 1); // Remove last orbital
+            }
+        }
+    }
+
+    QQControls.Button {
+        id: incrementTimeButton
+        anchors.left: parent.left
+        anchors.top: parent.top
+        anchors.margins: 20
+        anchors.topMargin: 80
+        text: "Increment Time"
+        implicitWidth: 150
+        enabled: true
+
+        background: QQ2.Rectangle {
+            implicitWidth: 150
+            implicitHeight: 40
+            opacity: enabled ? 1 : 0.3
+            color: parent.down ? "#6b7080" : "#848895"
+            border.color: "#222840"
+            border.width: 1
+            radius: 5
+        }
+
+        onClicked: {
+            orbitalsInterface.incrementTime();
         }
     }
 }
