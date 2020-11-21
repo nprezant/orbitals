@@ -2,6 +2,7 @@ import QtQuick 2.15 as QQ2
 import QtQuick.Window 2.14 as W
 import QtQuick.Controls 2.14 as QQControls
 import QtQuick3D 1.15 as QQ3D
+import QtQuick3D.Helpers 1.15 as Helpers
 
 // import Qt3D.Core 2.0
 // import Qt3D.Render 2.0 as QRenderer
@@ -136,29 +137,10 @@ W.Window {
             // lookAt: Qt.vector3d(0,0,0)
         }
 
-        // QRenderer.Camera {
-        //     id: camera
-        //     projectionType: CameraLens.PerspectiveProjection
-        //     fieldOfView: 45
-        //     aspectRatio: 16/9
-        //     nearPlane : 0.1
-        //     farPlane : 10000.0
-        //     position: Qt.vector3d(0, 1, 1).times(5250)
-        //     // upVector: Qt.vector3d( 0.0, 1.0, 1.0 )
-        //     viewCenter: Qt.vector3d( 0.0, 0.0, 0.0 )
-        // }
+        Helpers.WasdController {
+            controlledObject: camera
 
-        // RenderSettings {
-        //     activeFrameGraph: ForwardRenderer {
-        //         clearColor: Qt.rgba(0, 0.5, 1, 1)
-        //         camera: camera
-        //         showDebugOverlay: true
-        //     }
-        // }
-
-        // Q3DExtras.OrbitCameraController {
-        //     camera: camera
-        // }
+        }
 
         QQ3D.Model {
             id: primaryBody
