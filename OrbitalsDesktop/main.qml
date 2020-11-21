@@ -78,21 +78,12 @@ W.Window {
             readonly property int maxInstances: 100
 
             function update(orbitalChangeDataList) {
-                console.log("length of change list is " + orbitalChangeDataList.length);
-                console.log("primary body size " + primaryBody.bounds);
-                console.log("primary body size " + primaryBody.bounds.maximum);
-                console.log("primary body size " + primaryBody.bounds.minimum);
 
+                // TODO sanity check list lengths
                 for (var i=0; i<orbitalChangeDataList.length; i++)
                 {
                     // Add, remove, or update based on change type
                     let orbitalData = orbitalChangeDataList[i];
-                    console.log("orbital data = " + orbitalData);
-                    console.log("index = " + orbitalData.index);
-                    console.log("changeType = " + orbitalData.changeType);
-                    console.log("px = " + orbitalData.positionX);
-                    console.log("py = " + orbitalData.positionY);
-                    console.log("pz = " + orbitalData.positionZ);
 
                     let changeType = orbitalData.changeType;
                     if (changeType === OrbitalChangeData.Add)
@@ -158,7 +149,6 @@ W.Window {
         running: startStopCheckBox.checked ? true : false
         repeat: true
         onTriggered: {
-            console.log("running timer, incrementing time");
             orbitalsInterface.incrementTime();
         }
     }

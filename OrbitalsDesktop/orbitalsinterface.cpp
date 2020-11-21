@@ -13,9 +13,7 @@ void OrbitalsInterface::setSystemName(const QString& newName)
 
 void OrbitalsInterface::addOrbital()
 {
-    std::cout << "adding orbital" << "\n";
     orbitalSystem_.addCircularOrbitRadius(10000);
-    std::cout << orbitalSystem_.info() << std::endl;
 
     const auto index = orbitalSystem_.size() - 1;
     const auto orbital = orbitalSystem_[index];
@@ -53,9 +51,7 @@ void OrbitalsInterface::removeOrbital(int index)
 
 void OrbitalsInterface::incrementTime()
 {
-    std::cout << "incrementing time" << "\n";
     orbitalSystem_.incrementTime(200);
-    std::cout << orbitalSystem_.info() << std::endl;
 
     orbitalChangeDataVector_.clear();
     int index = 0;
