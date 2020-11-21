@@ -186,7 +186,7 @@ W.Window {
                     console.log("pz = " + orbitalData.positionZ);
 
                     let changeType = orbitalData.changeType;
-                    if (changeType == OrbitalChangeData.Add)
+                    if (changeType === OrbitalChangeData.Add)
                     {
                         // Create new instance
                         let xPos = orbitalData.positionX / 10;
@@ -197,7 +197,7 @@ W.Window {
                             orbitalSpawner, { "x": xPos, "y": yPos, "z": zPos, });
                         instances.push(instance);
                     }
-                    else if (changeType == OrbitalChangeData.Remove)
+                    else if (changeType === OrbitalChangeData.Remove)
                     {
                         // Remove existing instance
                         let index = orbitalData.index;
@@ -209,7 +209,7 @@ W.Window {
                         // removing 1 item, then not adding any others
                         instances.splice(index, 1);
                     }
-                    else if (changeType == OrbitalChangeData.Update)
+                    else if (changeType === OrbitalChangeData.Update)
                     {
                         // Update existing instance
                         let guiInstance = instances[i];
