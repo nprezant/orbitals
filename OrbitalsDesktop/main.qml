@@ -6,6 +6,9 @@ import QtQuick3D.Helpers 1.15 as Helpers
 
 import OrbitalsInterface 1.0
 
+// To allow gammayray to attach to application, run this:
+// echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope
+
 W.Window {
     id: window
     width: 1280
@@ -45,10 +48,6 @@ W.Window {
             position: Qt.vector3d(0, 1, 1).times(5250)
             eulerRotation.x: -45
             // lookAt: Qt.vector3d(0,0,0)
-        }
-
-        Helpers.WasdController {
-            controlledObject: camera
         }
 
         QQ3D.Model {
@@ -142,6 +141,13 @@ W.Window {
                 countLabel.text = "Orbitals in Scene: " + instances.length + "; System name: " + orbitalsInterface.systemName;
             }
         }
+    }
+
+    Helpers.WasdController {
+        id: wasdController
+        controlledObject: camera
+        focus: true // TODO figure out how to get keyboard focus back
+        shiftSpeed: 8 // multiplier
     }
 
     QQ2.Timer {
