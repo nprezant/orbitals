@@ -78,6 +78,9 @@ Item {
                 mousePressed(Qt.vector2d(centroid.position.x, centroid.position.y));
             else
                 mouseReleased(Qt.vector2d(centroid.position.x, centroid.position.y));
+
+            if (!focus && keysEnabled)
+                focus = true;
         }
     }
 
