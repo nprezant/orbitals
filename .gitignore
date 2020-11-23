@@ -6,6 +6,9 @@
 !*.*
 !*/
 
+# Unignore qmldir files
+!qmldir
+
 # Cmake stuff
 CMakeFiles/
 CMakeCache.txt

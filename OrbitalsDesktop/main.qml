@@ -3,6 +3,7 @@ import QtQuick.Window 2.14 as W
 import QtQuick.Controls 2.14 as QQControls
 import QtQuick3D 1.15 as QQ3D
 import QtQuick3D.Helpers 1.15 as Helpers
+import Components 1.0 as Components
 
 import OrbitalsInterface 1.0
 
@@ -143,7 +144,7 @@ W.Window {
         }
     }
 
-    Helpers.WasdController {
+    Components.WasdController {
         id: wasdController
         controlledObject: camera
         focus: true // TODO figure out how to get keyboard focus back
