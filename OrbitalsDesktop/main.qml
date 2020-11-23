@@ -147,8 +147,9 @@ W.Window {
     Components.WasdController {
         id: wasdController
         controlledObject: camera
-        focus: true // TODO figure out how to get keyboard focus back
-        shiftSpeed: 8 // multiplier
+        focus: true
+        speed: 8
+        shiftSpeed: 12
     }
 
     QQ2.Timer {
