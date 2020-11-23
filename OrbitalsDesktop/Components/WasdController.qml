@@ -84,6 +84,15 @@ Item {
         }
     }
 
+    MouseArea {
+        id: mouseArea
+        anchors.fill: parent
+        onClicked: {
+            if (!focus && keysEnabled)
+                focus = true;
+        }
+    }
+
     Keys.onPressed: if (keysEnabled) handleKeyPress(event)
     Keys.onReleased: if (keysEnabled) handleKeyRelease(event)
 
