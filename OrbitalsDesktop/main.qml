@@ -51,25 +51,8 @@ W.Window {
             // lookAt: Qt.vector3d(0,0,0)
         }
 
-        QQ3D.Model {
+        Components.PrimaryBody {
             id: primaryBody
-            source: "#Cube"
-            position: Qt.vector3d(0, 0, 0)
-            scale: Qt.vector3d(1, 1, 1).times(1 / bounds.maximum.x).times(637) // radius of earth in km e-1
-
-            materials: [ QQ3D.DefaultMaterial {
-                    diffuseColor: "green"
-                }
-            ]
-
-            QQ2.SequentialAnimation on eulerRotation {
-                loops: QQ2.Animation.Infinite
-                QQ2.PropertyAnimation {
-                    duration: 10000
-                    to: Qt.vector3d(0, 0, 0)
-                    from: Qt.vector3d(0, -360, 0)
-                }
-            }
         }
 
         QQ3D.Node {
