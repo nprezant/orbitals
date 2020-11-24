@@ -10,6 +10,7 @@ ColumnLayout {
 
     signal addButtonClicked()
     signal removeButtonClicked()
+    property bool animateChecked: false
 
     Component.onCompleted: {
         addButton.clicked.connect(root.addButtonClicked)
@@ -34,9 +35,16 @@ ColumnLayout {
             text: "Remove"
         }
 
-        Button {
-            id: animateButton
+        Switch {
+            // A really dumb way to handle checked/unchecked state
+            id: animateSwitch
             text: "Animate"
+            function isChecked() { return root.animateChecked }
+            checked: isChecked();
+            onClicked: {
+                root.animateChecked = !root.animateChecked;
+                checked = Qt.binding(isChecked);
+            }
         }
     }
 

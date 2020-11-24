@@ -81,24 +81,11 @@ W.Window {
 
     QQ2.Timer {
         interval: 1000 / 60
-        running: startStopCheckBox.checked ? true : false
+        running: orbitListView.animateChecked
         repeat: true
         onTriggered: {
             orbitalsInterface.incrementTime();
         }
-    }
-
-    QQControls.CheckBox {
-        id: startStopCheckBox
-        checked: false
-        anchors.left: parent.left
-        anchors.top: incrementTimeButton.top
-        anchors.margins: 20
-        anchors.topMargin: 60
-        text: "Start animation"
-
-
-        background: Components.ButtonBackground {}
     }
 
     QQControls.Label {
