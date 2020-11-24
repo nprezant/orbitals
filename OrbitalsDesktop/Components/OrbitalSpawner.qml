@@ -8,6 +8,8 @@ Node {
 
     property var instances: []
     readonly property int maxInstances: 100
+    property bool canAdd: true
+    property bool canRemove: false
 
     function update(orbitalChangeDataList) {
 
@@ -58,19 +60,19 @@ Node {
     function updateButtonState() {
         if (instances.length === 0)
         {
-            addButton.enabled = true;
-            removeButton.enabled = false;
+            canAdd = true;
+            canRemove = false;
         }
         else if (instances.length === maxInstances)
         {
-            addButton.enabled = false;
-            removeButton.enabled = true;
+            canAdd = false;
+            canRemove = true;
         }
         else
         {
-            addButton.enabled = true;
-            removeButton.enabled = true;
+            canAdd = true;
+            canRemove = true;
         }
-        countLabel.text = "Orbitals in Scene: " + instances.length + "; System name: " + orbitalsInterface.systemName;
+        countLabel.text = "Orbitals in Scene: " + instances.length
     }
 }

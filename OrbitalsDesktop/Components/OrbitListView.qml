@@ -4,26 +4,38 @@ import QtQuick.Controls 2.14
 
 
 ColumnLayout {
+    id: root
     spacing: 16
     Layout.preferredWidth: 230
 
+    signal addButtonClicked()
+    signal removeButtonClicked()
+
+    Component.onCompleted: {
+        addButton.clicked.connect(root.addButtonClicked)
+        removeButton.clicked.connect(root.removeButtonClicked)
+    }
+
     ButtonGroup {
-        buttons: systemControlButtonsLayout.children
+        buttons: buttonLayout.children
     }
 
     RowLayout {
-        id: systemControlButtonsLayout
+        id: buttonLayout
         Layout.alignment: Qt.AlignHCenter
 
         Button {
+            id: addButton
             text: "Add"
         }
 
         Button {
+            id: removeButton
             text: "Remove"
         }
 
         Button {
+            id: animateButton
             text: "Animate"
         }
     }

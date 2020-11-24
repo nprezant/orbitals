@@ -101,21 +101,6 @@ W.Window {
         background: Components.ButtonBackground {}
     }
 
-    QQControls.Button {
-        id: addButton
-        anchors.left: parent.left
-        anchors.top: parent.top
-        anchors.margins: 20
-        text: "Add Orbital"
-        implicitWidth: 150
-
-        background: Components.ButtonBackground {}
-
-        onClicked: {
-            orbitalsInterface.addOrbital();
-        }
-    }
-
     QQControls.Label {
         id: countLabel
         anchors.top: parent.top
@@ -124,23 +109,6 @@ W.Window {
         font.pointSize: 20
         font.bold: true
         color: "#848895"
-    }
-
-    QQControls.Button {
-        id: removeButton
-        anchors.right: parent.right
-        anchors.top: parent.top
-        anchors.margins: 20
-        text: "Remove Orbital"
-        implicitWidth: 150
-        enabled: false
-
-        background: Components.ButtonBackground {}
-
-        onClicked: {
-            if (orbitalSpawner.instances.length > 0)
-                orbitalsInterface.removeOrbital(orbitalSpawner.instances.length - 1); // Remove last orbital
-        }
     }
 
     QQControls.Button {
@@ -166,5 +134,14 @@ W.Window {
         anchors.top: parent.top
         anchors.margins: 10
         anchors.topMargin: 200
+
+        onAddButtonClicked: {
+            orbitalsInterface.addOrbital();
+        }
+
+        onRemoveButtonClicked: {
+            if (orbitalSpawner.instances.length > 0)
+                orbitalsInterface.removeOrbital(orbitalSpawner.instances.length - 1); // Remove last orbital
+        }
     }
 }
