@@ -46,9 +46,8 @@ W.Window {
 
         QQ3D.PerspectiveCamera {
             id: camera
-            position: Qt.vector3d(0, 1, 1).times(5250)
+            position: Qt.vector3d(0, 1, 1).times(525)
             eulerRotation.x: -45
-            // lookAt: Qt.vector3d(0,0,0)
         }
 
         Components.PrimaryBody {
@@ -62,6 +61,9 @@ W.Window {
         Helpers.AxisHelper {
             id: axisHelper
             enableAxisLines: true
+            enableXYGrid: false
+            enableXZGrid: false
+            enableYZGrid: false
         }
 
         Helpers.DebugView {

@@ -23,9 +23,9 @@ Node {
             if (changeType === OrbitalChangeData.Add)
             {
                 // Create new instance
-                let xPos = orbitalData.positionX / 10;
-                let yPos = orbitalData.positionY / 10;
-                let zPos = orbitalData.positionZ / 10;
+                let xPos = orbitalData.positionX / 100;
+                let yPos = orbitalData.positionY / 100;
+                let zPos = orbitalData.positionZ / 100;
                 let orbitalBodyComponent = Qt.createComponent("OrbitalBody.qml");
                 let instance = orbitalBodyComponent.createObject(
                     orbitalSpawner, { "x": xPos, "y": yPos, "z": zPos, });
@@ -48,10 +48,10 @@ Node {
                 // Update existing instance
                 let guiInstance = instances[i];
 
-                // km / 10
-                guiInstance.x = orbitalData.positionX / 10;
-                guiInstance.y = orbitalData.positionY / 10;
-                guiInstance.z = orbitalData.positionZ / 10;
+                // km / 100
+                guiInstance.x = orbitalData.positionX / 100;
+                guiInstance.y = orbitalData.positionY / 100;
+                guiInstance.z = orbitalData.positionZ / 100;
             }
         }
         updateButtonState();

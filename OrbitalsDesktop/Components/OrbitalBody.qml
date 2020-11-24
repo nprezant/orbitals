@@ -11,7 +11,7 @@ Node {
 
     Model {
         source: "#Cube"
-        // scale: Qt.vector3d(150, 150, 150)
+        scale: Qt.vector3d(0.3, 0.3, 0.3)
         eulerRotation.x: 90
 
         SequentialAnimation on eulerRotation {

@@ -9,7 +9,7 @@ Node {
         id: primaryBody
         source: "#Cube"
         position: Qt.vector3d(0, 0, 0)
-        scale: Qt.vector3d(1, 1, 1).times(1 / bounds.maximum.x).times(637) // radius of earth in km e-1
+        scale: Qt.vector3d(1, 1, 1).times(1 / bounds.maximum.x).times(63.7) // radius of earth in km e-1
 
         materials: [ DefaultMaterial {
                 diffuseColor: "green"
