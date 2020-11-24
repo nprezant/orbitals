@@ -98,29 +98,12 @@ W.Window {
         color: "#848895"
     }
 
-    QQControls.Button {
-        id: incrementTimeButton
-        anchors.left: parent.left
-        anchors.top: parent.top
-        anchors.margins: 20
-        anchors.topMargin: 80
-        text: "Increment Time"
-        implicitWidth: 150
-        enabled: true
-
-        background: Components.ButtonBackground {}
-
-        onClicked: {
-            orbitalsInterface.incrementTime();
-        }
-    }
-
     Components.OrbitListView {
         id: orbitListView
         anchors.left: parent.left
         anchors.top: parent.top
         anchors.margins: 10
-        anchors.topMargin: 200
+        anchors.topMargin: 10
 
         onAddButtonClicked: {
             orbitalsInterface.addOrbital();
@@ -129,6 +112,10 @@ W.Window {
         onRemoveButtonClicked: {
             if (orbitalSpawner.instances.length > 0)
                 orbitalsInterface.removeOrbital(orbitalSpawner.instances.length - 1); // Remove last orbital
+        }
+
+        onIncrementButtonClicked: {
+            orbitalsInterface.incrementTime()
         }
     }
 }

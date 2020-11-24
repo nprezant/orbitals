@@ -10,11 +10,13 @@ ColumnLayout {
 
     signal addButtonClicked()
     signal removeButtonClicked()
+    signal incrementButtonClicked()
     property bool animateChecked: false
 
     Component.onCompleted: {
         addButton.clicked.connect(root.addButtonClicked)
         removeButton.clicked.connect(root.removeButtonClicked)
+        incrementButton.clicked.connect(root.incrementButtonClicked)
     }
 
     ButtonGroup {
@@ -33,6 +35,11 @@ ColumnLayout {
         Button {
             id: removeButton
             text: "Remove"
+        }
+
+        Button {
+            id: incrementButton
+            text: "+time"
         }
 
         Switch {
