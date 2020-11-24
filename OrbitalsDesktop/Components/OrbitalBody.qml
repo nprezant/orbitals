@@ -3,7 +3,7 @@ import QtQuick3D 1.15
 import QtQuick3D.Materials 1.15
 
 Node {
-    id: orbitalBody
+    id: root
 
     property real xRotation: Math.random() * (360 - (-360)) + -360
     property real yRotation: Math.random() * (360 - (-360)) + -360
