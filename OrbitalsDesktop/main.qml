@@ -98,15 +98,7 @@ W.Window {
         text: "Start animation"
 
 
-        background: QQ2.Rectangle {
-            implicitWidth: 150
-            implicitHeight: 40
-            opacity: 1
-            color: parent.down ? "#6b7080" : "#848895"
-            border.color: "#222840"
-            border.width: 1
-            radius: 5
-        }
+        background: Components.ButtonBackground {}
     }
 
     QQControls.Button {
@@ -117,15 +109,7 @@ W.Window {
         text: "Add Orbital"
         implicitWidth: 150
 
-        background: QQ2.Rectangle {
-            implicitWidth: 150
-            implicitHeight: 40
-            opacity: enabled ? 1 : 0.3
-            color: parent.down ? "#6b7080" : "#848895"
-            border.color: "#222840"
-            border.width: 1
-            radius: 5
-        }
+        background: Components.ButtonBackground {}
 
         onClicked: {
             orbitalsInterface.addOrbital();
@@ -151,21 +135,11 @@ W.Window {
         implicitWidth: 150
         enabled: false
 
-        background: QQ2.Rectangle {
-            implicitWidth: 150
-            implicitHeight: 40
-            opacity: enabled ? 1 : 0.3
-            color: parent.down ? "#6b7080" : "#848895"
-            border.color: "#222840"
-            border.width: 1
-            radius: 5
-        }
+        background: Components.ButtonBackground {}
 
         onClicked: {
             if (orbitalSpawner.instances.length > 0)
-            {
                 orbitalsInterface.removeOrbital(orbitalSpawner.instances.length - 1); // Remove last orbital
-            }
         }
     }
 
@@ -179,15 +153,7 @@ W.Window {
         implicitWidth: 150
         enabled: true
 
-        background: QQ2.Rectangle {
-            implicitWidth: 150
-            implicitHeight: 40
-            opacity: enabled ? 1 : 0.3
-            color: parent.down ? "#6b7080" : "#848895"
-            border.color: "#222840"
-            border.width: 1
-            radius: 5
-        }
+        background: Components.ButtonBackground {}
 
         onClicked: {
             orbitalsInterface.incrementTime();
