@@ -142,6 +142,16 @@ W.Window {
                 countLabel.text = "Orbitals in Scene: " + instances.length + "; System name: " + orbitalsInterface.systemName;
             }
         }
+        Helpers.AxisHelper {
+            id: axisHelper
+            enableAxisLines: true
+        }
+
+        Helpers.DebugView {
+            id: debugView
+            source: parent
+            anchors.bottom: parent.bottom
+        }
     }
 
     Components.WasdController {
