@@ -37,6 +37,8 @@ compile_commands.json
 # kdev4
 *.kdev4
 *.ninja
+.ninja_deps
+.ninja_log
 
 # Reference
 reference
