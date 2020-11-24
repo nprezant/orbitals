@@ -276,4 +276,12 @@ W.Window {
             orbitalsInterface.incrementTime();
         }
     }
+
+    Components.OrbitListView {
+        id: orbitListView
+        anchors.left: parent.left
+        anchors.top: parent.top
+        anchors.margins: 10
+        anchors.topMargin: 200
+    }
 }
