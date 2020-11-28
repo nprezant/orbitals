@@ -83,21 +83,29 @@ ColumnLayout {
             id: listView
             clip: true
             anchors.fill: parent
+            spacing: 16
+
             model: ListModel {}
-            delegate: ItemDelegate {
-                text: model.name + ", x: " + model.x  + ", y: " + model.y + ", z: " + model.z
+            delegate: OrbitalEditor {
+                name: model.name
+                px: model.px
+                py: model.py
+                pz: model.pz
+                vx: model.vx
+                vy: model.vy
+                vz: model.vz
                 width: listView.width
             }
 
             ScrollBar.vertical: ScrollBar {
-                parent: filesFrame
+                parent: frame
                 policy: ScrollBar.AlwaysOn
                 anchors.top: parent.top
-                anchors.topMargin: filesFrame.topPadding
+                anchors.topMargin: frame.topPadding
                 anchors.right: parent.right
                 anchors.rightMargin: 1
                 anchors.bottom: parent.bottom
-                anchors.bottomMargin: filesFrame.bottomPadding
+                anchors.bottomMargin: frame.bottomPadding
             }
 
             function addOrbital(orbitalChangeData) {
@@ -121,10 +129,10 @@ ColumnLayout {
                 let yPos = Math.round(orbitalChangeData.positionY);
                 let zPos = Math.round(orbitalChangeData.positionZ);
                 let info = {
-                    name: "Name tbd",
-                    x: xPos,
-                    y: yPos,
-                    z: zPos,
+                    name: "New Orbital",
+                    px: xPos,
+                    py: yPos,
+                    pz: zPos,
                     vx: 0,
                     vy: 0,
                     vz: 0,
