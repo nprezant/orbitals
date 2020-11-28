@@ -22,7 +22,9 @@ W.Window {
 
         onOrbitalChangeDataListChanged: {
             var orbitalChangeDataList = orbitalsInterface.orbitalChangeDataList;
+
             orbitalSpawner.update(orbitalChangeDataList);
+            orbitalController.update(orbitalChangeDataList);
         }
     }
 
@@ -77,13 +79,13 @@ W.Window {
         id: wasdController
         controlledObject: camera
         focus: true
-        speed: 8
-        shiftSpeed: 12
+        speed: 4
+        shiftSpeed: 8
     }
 
     QQ2.Timer {
         interval: 1000 / 60
-        running: orbitListView.animateChecked
+        running: orbitalController.animateChecked
         repeat: true
         onTriggered: {
             orbitalsInterface.incrementTime();
@@ -100,8 +102,8 @@ W.Window {
         color: "#848895"
     }
 
-    Components.OrbitListView {
-        id: orbitListView
+    Components.OrbitalController {
+        id: orbitalController
         anchors.left: parent.left
         anchors.top: parent.top
         anchors.margins: 10
