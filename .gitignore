@@ -27,6 +27,7 @@ compile_commands.json
 
 # User files
 *.user
+.vimrc
 
 # Qt
 *_autogen/
