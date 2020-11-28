@@ -20,14 +20,14 @@ void OrbitalsInterface::addOrbital()
     const auto index = orbitalSystem_.size() - 1;
     auto orbital = orbitalSystem_[index];
     const auto position = orbital.position();
+    const auto velocity = orbital.velocity();
 
     orbitalChangeDataVector_.clear();
     orbitalChangeDataVector_.append(new OrbitalChangeData(
-        0, // N/A for adding
+        0, // Index N/A for adding
         OrbitalChangeData::Add,
-        position.X,
-        position.Y,
-        position.Z
+        position,
+        velocity
     ));
 
     // Emit signal that the orbital system changed
@@ -42,9 +42,8 @@ void OrbitalsInterface::removeOrbital(int index)
     orbitalChangeDataVector_.append(new OrbitalChangeData(
         index,
         OrbitalChangeData::Remove,
-        0, // Position NA for removing
-        0, // Position NA for removing
-        0 // Position NA for removing
+        Vector3(0, 0, 0), // Position N/A for removing
+        Vector3(0, 0, 0) // Velocity N/A for removing
     ));
 
     // Emit signal that the orbital system changed
@@ -61,13 +60,13 @@ void OrbitalsInterface::incrementTime()
     for (const auto& orbital : orbitalSystem_)
     {
         const auto position = orbital.position();
+        const auto velocity = orbital.velocity();
 
         orbitalChangeDataVector_.append(new OrbitalChangeData(
             index,
             OrbitalChangeData::Update,
-            position.X,
-            position.Y,
-            position.Z
+            position,
+            velocity
         ));
 
         index++;

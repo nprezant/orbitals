@@ -125,19 +125,15 @@ ColumnLayout {
             }
 
             function extractOrbitalInfo(orbitalChangeData) {
-                let xPos = Math.round(orbitalChangeData.positionX);
-                let yPos = Math.round(orbitalChangeData.positionY);
-                let zPos = Math.round(orbitalChangeData.positionZ);
-                let info = {
+                return {
                     name: "New Orbital",
-                    px: xPos,
-                    py: yPos,
-                    pz: zPos,
-                    vx: 0,
-                    vy: 0,
-                    vz: 0,
+                    px: Math.round(orbitalChangeData.positionX),
+                    py: Math.round(orbitalChangeData.positionY),
+                    pz: Math.round(orbitalChangeData.positionZ),
+                    vx: Math.round(orbitalChangeData.velocityX),
+                    vy: Math.round(orbitalChangeData.velocityY),
+                    vz: Math.round(orbitalChangeData.velocityZ),
                 };
-                return info;
             }
         }
     }
