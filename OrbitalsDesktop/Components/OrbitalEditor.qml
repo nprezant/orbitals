@@ -13,37 +13,74 @@ Rectangle {
 
     property alias vx: orbitalEditorDetails.vx
     property alias vy: orbitalEditorDetails.vy
-    property alias vz: orbitalEditorDetails.vz   
+    property alias vz: orbitalEditorDetails.vz
 
-    implicitWidth: layout.width
-    implicitHeight: layout.height
+    implicitWidth: column.implicitWidth
+    implicitHeight: column.implicitHeight
+
     color: "#40000000"
     border.color: "#D9FFFFFF"
     radius: 5
 
-    ColumnLayout {
-        id: layout
-        spacing: 0
-        Layout.preferredWidth: 40
-        Layout.alignment: Qt.AlignLeft        
+    Column {
+        id: column
+        padding: 10
 
         Text {
             text: name
-            Layout.margins: 10
             
             MouseArea {
                 anchors.fill: parent
                 anchors.margins: -10
                 onClicked: {
-                    orbitalEditorDetails.visible = !orbitalEditorDetails.visible;
+                    orbitalEditorDetails.state == "show" ? orbitalEditorDetails.state = "hide" : orbitalEditorDetails.state = "show";
                 }
             }
         }
 
         OrbitalEditorDetails {
             id: orbitalEditorDetails
-            visible: false
-            Layout.margins: 10
+            scale: 0.0
+
+            height: 0
+            width: 0
+            state: "hide"
+
+            states: [
+                State {
+                    name: "show"
+                    PropertyChanges {
+                        target: orbitalEditorDetails;
+                        width: implicitWidth;
+                        height: implicitHeight;
+                        scale: 1.0;
+                        opacity: 1.0;
+                    }
+                },
+                State {
+                    name: "hide"
+                    PropertyChanges {
+                        target: orbitalEditorDetails;
+                        width: 0.0;
+                        height: 0.0;
+                        scale: 0.0;
+                        opacity: 0.0;
+                    }
+                }
+            ]
+
+            transitions: [
+                Transition {
+                    from: "show"
+                    to: "hide"
+                    NumberAnimation { target: orbitalEditorDetails; properties: "opacity,scale,width,height"; duration: 200; }
+                },
+                Transition {
+                    from: "hide"
+                    to: "show"
+                    NumberAnimation { target: orbitalEditorDetails; properties: "opacity,scale,width,height"; duration: 200; }
+                }
+            ]
         }
     }
 }
