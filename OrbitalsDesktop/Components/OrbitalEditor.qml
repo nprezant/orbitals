@@ -19,6 +19,7 @@ Rectangle {
     implicitHeight: layout.height
     color: "#40000000"
     border.color: "#D9FFFFFF"
+    radius: 5
 
     ColumnLayout {
         id: layout
