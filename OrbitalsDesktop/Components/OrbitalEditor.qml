@@ -33,6 +33,7 @@ Rectangle {
             
             MouseArea {
                 anchors.fill: parent
+                anchors.margins: -10
                 onClicked: {
                     orbitalEditorDetails.visible = !orbitalEditorDetails.visible;
                 }
