@@ -74,8 +74,8 @@ ColumnLayout {
         implicitHeight: 300
 
         background: Rectangle {
-            color: "lightgreen"
-            border.color: "#21be2b"
+            color: "#80FFFFFF"
+            border.color: "#D9FFFFFF"
             radius: 10
         }        
 
@@ -94,7 +94,6 @@ ColumnLayout {
                 vx: model.vx
                 vy: model.vy
                 vz: model.vz
-                width: listView.width
             }
 
             ScrollBar.vertical: ScrollBar {

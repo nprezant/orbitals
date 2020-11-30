@@ -4,28 +4,44 @@ import QtQuick.Controls 2.14
 
 import OrbitalsInterface 1.0
 
-
-ColumnLayout {
-    id: root
-    spacing: 0
-    Layout.preferredWidth: 40
-    Layout.alignment: Qt.AlignLeft
-
+Rectangle {
     property string name: "New Orbital"
-    
+
     property alias px: orbitalEditorDetails.px
     property alias py: orbitalEditorDetails.py
     property alias pz: orbitalEditorDetails.pz
 
     property alias vx: orbitalEditorDetails.vx
     property alias vy: orbitalEditorDetails.vy
-    property alias vz: orbitalEditorDetails.vz
+    property alias vz: orbitalEditorDetails.vz   
 
-    Text {
-        text: name
-    }
+    implicitWidth: layout.width
+    implicitHeight: layout.height
+    color: "#40000000"
+    border.color: "#D9FFFFFF"
 
-    OrbitalEditorDetails {
-        id: orbitalEditorDetails
+    ColumnLayout {
+        id: layout
+        spacing: 0
+        Layout.preferredWidth: 40
+        Layout.alignment: Qt.AlignLeft        
+
+        Text {
+            text: name
+            Layout.margins: 10
+            
+            MouseArea {
+                anchors.fill: parent
+                onClicked: {
+                    orbitalEditorDetails.visible = !orbitalEditorDetails.visible;
+                }
+            }
+        }
+
+        OrbitalEditorDetails {
+            id: orbitalEditorDetails
+            visible: false
+            Layout.margins: 10
+        }
     }
 }
