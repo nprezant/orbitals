@@ -106,6 +106,7 @@ W.Window {
         id: orbitalController
         anchors.left: parent.left
         anchors.top: parent.top
+        anchors.bottom: parent.bottom
         anchors.margins: 10
         anchors.topMargin: 10
 
