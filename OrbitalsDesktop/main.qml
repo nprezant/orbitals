@@ -3,7 +3,10 @@ import QtQuick.Window 2.14 as W
 import QtQuick.Controls 2.14 as QQControls
 import QtQuick3D 1.15 as QQ3D
 import QtQuick3D.Helpers 1.15 as Helpers
-import Components 1.0 as Components
+
+import CameraControls 1.0
+import OrbitalControls 1.0
+import OrbitalView 1.0
 
 import OrbitalsInterface 1.0
 
@@ -52,11 +55,11 @@ W.Window {
             eulerRotation.x: -45
         }
 
-        Components.PrimaryBody {
+        PrimaryBody {
             id: primaryBody
         }
 
-        Components.OrbitalSpawner {
+        OrbitalSpawner {
             id: orbitalSpawner
         }
 
@@ -75,7 +78,7 @@ W.Window {
         }
     }
 
-    Components.WasdController {
+    WasdController {
         id: wasdController
         controlledObject: camera
         focus: true
@@ -102,7 +105,7 @@ W.Window {
         color: "#848895"
     }
 
-    Components.OrbitalController {
+    OrbitalController {
         id: orbitalController
         anchors.left: parent.left
         anchors.top: parent.top
