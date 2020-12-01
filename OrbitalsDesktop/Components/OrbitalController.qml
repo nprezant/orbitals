@@ -67,6 +67,7 @@ ColumnLayout {
     OrbitalListView {
         id: listView
         Layout.fillHeight: true
+        Layout.fillWidth: true
     }
 
     function update(orbitalChangeDataList) {

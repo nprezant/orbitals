@@ -7,8 +7,6 @@ import OrbitalsInterface 1.0
 ListView {
     id: listView
     clip: true
-    anchors.left: parent.left
-    anchors.right: parent.right
     spacing: 16
 
     model: ListModel {}
