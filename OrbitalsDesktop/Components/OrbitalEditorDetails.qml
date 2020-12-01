@@ -73,11 +73,13 @@ Row {
                     target: positionVelocityView;
                     height: positionVelocityView.implicitHeight;
                     width: positionVelocityView.implicitWidth;
+                    opacity: 1;
                 }
                 PropertyChanges {
                     target: orbitalElementsView;
                     height: 0;
-                    width: 0;
+                    width: positionVelocityView.implicitWidth;
+                    opacity: 0;
                 }
             },
             State {
@@ -85,12 +87,14 @@ Row {
                 PropertyChanges {
                     target: positionVelocityView;
                     height: 0;
-                    width: 0;
+                    width: orbitalElementsView.implicitWidth;
+                    opacity: 0;
                 }
                 PropertyChanges {
                     target: orbitalElementsView;
                     height: orbitalElementsView.implicitHeight;
                     width: orbitalElementsView.implicitWidth;
+                    opacity: 1;
                 }
             }
         ]
@@ -100,7 +104,7 @@ Row {
                 from: "pv"
                 to: "el"
                 reversible: true
-                NumberAnimation { targets: [positionVelocityView, orbitalElementsView]; properties: "width,height"; duration: 200 }
+                NumberAnimation { targets: [positionVelocityView, orbitalElementsView]; properties: "width,height,opacity"; duration: 200 }
             }
         ]
     }
