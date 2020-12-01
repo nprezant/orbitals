@@ -15,6 +15,16 @@ Rectangle {
     property alias vy: orbitalEditorDetails.vy
     property alias vz: orbitalEditorDetails.vz
 
+    property alias theta: orbitalEditorDetails.theta
+    property alias h: orbitalEditorDetails.h
+    property alias e: orbitalEditorDetails.e
+
+    property alias bigOmega: orbitalEditorDetails.bigOmega
+    property alias inclination: orbitalEditorDetails.inclination
+    property alias omega: orbitalEditorDetails.omega
+
+    property double time
+
     implicitWidth: column.implicitWidth
     implicitHeight: column.implicitHeight
 

@@ -20,6 +20,15 @@ ListView {
         vx: model.vx
         vy: model.vy
         vz: model.vz
+
+        theta: model.theta
+        h: model.h
+        e: model.e
+        bigOmega: model.Omega
+        inclination: model.inclination
+        omega: model.omega
+
+        time: model.time
     }
 
     // ScrollBar.vertical: ScrollBar {
@@ -58,6 +67,15 @@ ListView {
             vx: Math.round(orbitalChangeData.velocityX),
             vy: Math.round(orbitalChangeData.velocityY),
             vz: Math.round(orbitalChangeData.velocityZ),
+
+            theta: Math.round(orbitalChangeData.theta * 180. / Math.PI),
+            h: Math.round(orbitalChangeData.h),
+            e: Math.round(orbitalChangeData.e),
+            Omega: Math.round(orbitalChangeData.Omega),
+            inclination: Math.round(orbitalChangeData.inclination),
+            omega: Math.round(orbitalChangeData.omega),
+
+            time: Math.round(orbitalChangeData.time),
         };
     }
 }
