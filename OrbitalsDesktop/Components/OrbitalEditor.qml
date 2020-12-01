@@ -25,13 +25,16 @@ Rectangle {
     Column {
         id: column
         padding: 10
+        spacing: 5
 
         Text {
             text: name
-            
+            topPadding: 5
+            bottomPadding: 5
+
             MouseArea {
                 anchors.fill: parent
-                anchors.margins: -10
+                anchors.margins: -column.padding
                 onClicked: {
                     orbitalEditorDetails.state == "show" ? orbitalEditorDetails.state = "hide" : orbitalEditorDetails.state = "show";
                 }
@@ -73,11 +76,7 @@ Rectangle {
                 Transition {
                     from: "show"
                     to: "hide"
-                    NumberAnimation { target: orbitalEditorDetails; properties: "opacity,scale,width,height"; duration: 200; }
-                },
-                Transition {
-                    from: "hide"
-                    to: "show"
+                    reversible: true
                     NumberAnimation { target: orbitalEditorDetails; properties: "opacity,scale,width,height"; duration: 200; }
                 }
             ]

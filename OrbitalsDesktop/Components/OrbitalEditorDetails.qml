@@ -4,69 +4,104 @@ import QtQuick.Controls 2.14
 
 import OrbitalsInterface 1.0
 
-GridLayout {
-    id: root
-    columnSpacing: 16
-    rowSpacing: 16
-    columns: 4
-    Layout.preferredWidth: 200
+Row {
+    property alias px: positionVelocityView.px
+    property alias py: positionVelocityView.py
+    property alias pz: positionVelocityView.pz
 
-    property double px
-    property double py
-    property double pz
+    property alias vx: positionVelocityView.vx
+    property alias vy: positionVelocityView.vy
+    property alias vz: positionVelocityView.vz
 
-    property double vx
-    property double vy
-    property double vz
+    property alias theta: orbitalElementsView.theta
+    property alias h: orbitalElementsView.h
+    property alias e: orbitalElementsView.e
 
-    // Row 1
-    Text {
-        // Blank top left table cell
+    property alias bigOmega: orbitalElementsView.bigOmega
+    property alias inclination: orbitalElementsView.inclination
+    property alias omega: orbitalElementsView.omega
+
+    spacing: 10
+
+    ButtonGroup {
+        buttons: buttonLayout.children
     }
 
-    Text {
-        text: "x"
+    Column {
+        id: buttonLayout
+        spacing: 4
+        padding: 2
+        property int sideLength: 20
+        Button {
+            // TODO change to images, like so
+            // Image {
+            //     anchors.fill: parent
+            //     source: "qrc:/icons/positionVelocity.png"
+            // }
+            text: "1"
+            width: parent.sideLength
+            height: parent.sideLength
+            checkable: true
+            checked: true
+            onClicked: { detailView.state = "pv" }
+        }
+        Button {
+            text: "2"
+            width: parent.sideLength
+            height: parent.sideLength
+            checkable: true
+            onClicked: { detailView.state = "el" }
+        }
     }
 
-    Text {
-        text: "y"
-    }
+    Column {
+        id: detailView
+        state: "pv"
 
-    Text {
-        text: "z"
-    }
+        PositionVelocityView {
+            id: positionVelocityView
+        }
 
-    // Row 2
-    Text {
-        text: "Position (km)"
-    }
+        OrbitalElementsView {
+            id: orbitalElementsView
+        }
 
-    TextInput {
-        text: px
-    }
+        states: [
+            State {
+                name: "pv"
+                PropertyChanges {
+                    target: positionVelocityView;
+                    height: positionVelocityView.implicitHeight;
+                    width: positionVelocityView.implicitWidth;
+                }
+                PropertyChanges {
+                    target: orbitalElementsView;
+                    height: 0;
+                    width: 0;
+                }
+            },
+            State {
+                name: "el"
+                PropertyChanges {
+                    target: positionVelocityView;
+                    height: 0;
+                    width: 0;
+                }
+                PropertyChanges {
+                    target: orbitalElementsView;
+                    height: orbitalElementsView.implicitHeight;
+                    width: orbitalElementsView.implicitWidth;
+                }
+            }
+        ]
 
-    TextInput {
-        text: py
+        transitions: [
+            Transition {
+                from: "pv"
+                to: "el"
+                reversible: true
+                NumberAnimation { targets: [positionVelocityView, orbitalElementsView]; properties: "width,height"; duration: 200 }
+            }
+        ]
     }
-
-    TextInput {
-        text: pz
-    }
-
-    // Row 3
-    Text {
-        text: "Velocity (km/s)"
-    }
-
-    TextInput {
-        text: vx
-    }
-
-    TextInput {
-        text: vy
-    }
-
-    TextInput {
-        text: vz
-    }    
 }
