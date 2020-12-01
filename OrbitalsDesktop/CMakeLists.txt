@@ -14,6 +14,10 @@ find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Quick Quick3D REQUIRED)
 add_library(OrbitalsInterface orbitalsinterface.cpp)
 target_link_libraries(OrbitalsInterface Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Quick Orbitals)
 
+# Add library for the theme
+add_library(Theme theme/theme.cpp)
+target_link_libraries(Theme Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Quick)
+
 add_executable(OrbitalsDesktop
     main.cpp
     qml.qrc
@@ -24,4 +28,4 @@ add_executable(OrbitalsDesktop
 target_compile_definitions(OrbitalsDesktop
   PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
 target_link_libraries(OrbitalsDesktop
-  PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Quick Qt${QT_VERSION_MAJOR}::Quick3D OrbitalsInterface)
+  PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Quick Qt${QT_VERSION_MAJOR}::Quick3D OrbitalsInterface Theme)

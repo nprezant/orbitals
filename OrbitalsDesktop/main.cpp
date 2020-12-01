@@ -3,6 +3,7 @@
 #include <QtQuick3D/qquick3d.h>
 
 #include "orbitalsinterface.h"
+#include "theme/theme.h"
 
 int main(int argc, char* argv[])
 {
@@ -11,6 +12,8 @@ int main(int argc, char* argv[])
   QGuiApplication app(argc, argv);
   qmlRegisterType<OrbitalsInterface>("OrbitalsInterface", 1, 0, "OrbitalsInterface");
   qmlRegisterType<OrbitalChangeData>("OrbitalsInterface", 1, 0, "OrbitalChangeData");
+
+  Theme::registerTypes("Theme");
 
   QSurfaceFormat::setDefaultFormat(QQuick3D::idealSurfaceFormat(4));
 

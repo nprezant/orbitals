@@ -3,6 +3,7 @@ import QtQuick.Layouts 1.12
 import QtQuick.Controls 2.14
 
 import OrbitalsInterface 1.0
+import Theme 1.0
 
 Rectangle {
     property string name: "New Orbital"
@@ -28,7 +29,7 @@ Rectangle {
     implicitWidth: column.implicitWidth
     implicitHeight: column.implicitHeight
 
-    color: "#b195bf"
+    color: Theme.bgColor
     border.color: "#D9FFFFFF"
     radius: 5
 
