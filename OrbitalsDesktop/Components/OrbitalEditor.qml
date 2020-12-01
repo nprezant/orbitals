@@ -28,7 +28,7 @@ Rectangle {
     implicitWidth: column.implicitWidth
     implicitHeight: column.implicitHeight
 
-    color: "#40000000"
+    color: "#b195bf"
     border.color: "#D9FFFFFF"
     radius: 5
 

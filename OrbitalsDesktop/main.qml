@@ -35,7 +35,7 @@ W.Window {
         renderMode: QQ3D.View3D.Underlay
 
         environment: QQ3D.SceneEnvironment {
-            clearColor: "lightsteelblue"
+            clearColor: "#242424"
             backgroundMode: QQ3D.SceneEnvironment.Color
             antialiasingMode: QQ3D.SceneEnvironment.MSAA
             antialiasingQuality: QQ3D.SceneEnvironment.High
