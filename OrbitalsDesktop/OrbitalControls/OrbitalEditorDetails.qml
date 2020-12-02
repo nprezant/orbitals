@@ -20,7 +20,9 @@ Column {
     property alias bigOmega: orbitalElementsView.bigOmega
     property alias inclination: orbitalElementsView.inclination
     property alias omega: orbitalElementsView.omega
-    
+
+    property alias time: timeView.time
+
     spacing: 10
 
     EditButtons {
@@ -61,6 +63,13 @@ Column {
                 checkable: true
                 onClicked: { detailView.state = "el" }
             }
+            Button {
+                text: "3"
+                width: parent.sideLength
+                height: parent.sideLength
+                checkable: true
+                onClicked: { detailView.state = "time" }
+            }
         }
 
         Column {
@@ -73,6 +82,10 @@ Column {
 
             OrbitalElementsView {
                 id: orbitalElementsView
+            }
+
+            TimeView {
+                id: timeView
             }
 
             states: [
@@ -90,9 +103,21 @@ Column {
                         width: positionVelocityView.implicitWidth;
                         opacity: 0;
                     }
+                    PropertyChanges {
+                        target: timeView;
+                        height: 0;
+                        width: positionVelocityView.implicitWidth;
+                        opacity: 0;
+                    }
                 },
                 State {
                     name: "el"
+                    PropertyChanges {
+                        target: orbitalElementsView;
+                        height: orbitalElementsView.implicitHeight;
+                        width: orbitalElementsView.implicitWidth;
+                        opacity: 1;
+                    }
                     PropertyChanges {
                         target: positionVelocityView;
                         height: 0;
@@ -100,20 +125,40 @@ Column {
                         opacity: 0;
                     }
                     PropertyChanges {
-                        target: orbitalElementsView;
-                        height: orbitalElementsView.implicitHeight;
+                        target: timeView;
+                        height: 0;
                         width: orbitalElementsView.implicitWidth;
+                        opacity: 0;
+                    }
+                },
+                State {
+                    name: "time"
+                    PropertyChanges {
+                        target: timeView;
+                        height: timeView.implicitHeight;
+                        width: timeView.implicitWidth;
                         opacity: 1;
+                    }
+                    PropertyChanges {
+                        target: positionVelocityView;
+                        height: 0;
+                        width: timeView.implicitWidth;
+                        opacity: 0;
+                    }
+                    PropertyChanges {
+                        target: orbitalElementsView;
+                        height: 0;
+                        width: timeView.implicitWidth;
+                        opacity: 0;
                     }
                 }
             ]
 
             transitions: [
                 Transition {
-                    from: "pv"
-                    to: "el"
-                    reversible: true
-                    NumberAnimation { targets: [positionVelocityView, orbitalElementsView]; properties: "width,height,opacity"; duration: 200 }
+                    from: "*"
+                    to: "*"
+                    NumberAnimation { targets: [positionVelocityView, orbitalElementsView, timeView]; properties: "width,height,opacity"; duration: 200 }
                 }
             ]
         }

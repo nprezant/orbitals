@@ -24,7 +24,7 @@ Rectangle {
     property alias inclination: orbitalEditorDetails.inclination
     property alias omega: orbitalEditorDetails.omega
 
-    property double time
+    property alias time: orbitalEditorDetails.time
 
     implicitWidth: column.implicitWidth
     implicitHeight: column.implicitHeight
