@@ -11,8 +11,11 @@ Node {
 
     property real darkeningFactor: Math.random() * 1.5 + 0.5
 
+    readonly property var shapes: ["#Cube", "#Cone", "#Sphere", "#Cylinder"]
+    property int shapeChoice: Math.floor(Math.random() * shapes.length);
+
     Model {
-        source: "#Cube"
+        source: shapes[shapeChoice]
         scale: Qt.vector3d(0.3, 0.3, 0.3)
         eulerRotation.x: 90
 
