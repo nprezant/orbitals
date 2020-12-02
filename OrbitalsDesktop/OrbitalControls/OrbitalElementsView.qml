@@ -20,7 +20,7 @@ GridLayout {
     clip: true
 
     // Row 1
-    Text {
+    DetailLabel {
         text: "theta"
     }
 
@@ -28,7 +28,7 @@ GridLayout {
         text: theta
     }
 
-    Text {
+    DetailLabel {
         text: "Omega"
     }
 
@@ -37,7 +37,7 @@ GridLayout {
     }
 
     // Row 2
-    Text {
+    DetailLabel {
         text: "h"
     }
 
@@ -45,7 +45,7 @@ GridLayout {
         text: h
     }
 
-    Text {
+    DetailLabel {
         text: "inclination"
     }
 
@@ -54,7 +54,7 @@ GridLayout {
     }
 
     // Row 3
-    Text {
+    DetailLabel {
         text: "e"
     }
 
@@ -62,7 +62,7 @@ GridLayout {
         text: e
     }
 
-    Text {
+    DetailLabel {
         text: "omega"
     }
 

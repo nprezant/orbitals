@@ -24,20 +24,20 @@ GridLayout {
         // Blank top left table cell
     }
 
-    Text {
+    DetailLabel {
         text: "x"
     }
 
-    Text {
+    DetailLabel {
         text: "y"
     }
 
-    Text {
+    DetailLabel {
         text: "z"
     }
 
     // Row 2
-    Text {
+    DetailLabel {
         text: "Position (km)"
     }
 
@@ -54,7 +54,7 @@ GridLayout {
     }
 
     // Row 3
-    Text {
+    DetailLabel {
         text: "Velocity (km/s)"
     }
 
