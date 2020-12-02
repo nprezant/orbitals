@@ -5,9 +5,11 @@ import QtQuick3D.Materials 1.15
 Node {
     id: root
 
-    property real xRotation: Math.random() * (360 - (-360)) + -360
-    property real yRotation: Math.random() * (360 - (-360)) + -360
-    property real zRotation: Math.random() * (360 - (-360)) + -360
+    property real xRotation: Math.random() * 5
+    property real yRotation: Math.random() * 5
+    property real zRotation: Math.random() * 5
+
+    property real darkeningFactor: Math.random() * 1.5 + 0.5
 
     Model {
         source: "#Cube"
@@ -26,7 +28,7 @@ Node {
         materials: [ 
             DefaultMaterial
             {
-                diffuseColor: "blue"
+                diffuseColor: Qt.darker("#FF7F50", darkeningFactor)
             }
         ]
     }
