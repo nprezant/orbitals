@@ -12,7 +12,7 @@ Node {
         scale: Qt.vector3d(1, 1, 1).times(1 / bounds.maximum.x).times(63.7) // radius of earth in km e-1
 
         materials: [ DefaultMaterial {
-                diffuseColor: "green"
+                diffuseColor: "#7633a3"
             }
         ]
 
