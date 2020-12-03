@@ -14,6 +14,8 @@ GridLayout {
     property double vy
     property double vz
 
+    property bool inEditMode
+
     columnSpacing: 16
     rowSpacing: 16
     columns: 4
@@ -41,16 +43,25 @@ GridLayout {
         text: "Position (km)"
     }
 
-    TextInput {
+    NumberInput {
         text: px
+        enabled: inEditMode
+        Layout.minimumWidth: suggestedMinimumWidth
+        Layout.fillWidth: true
     }
 
-    TextInput {
+    NumberInput {        
         text: py
+        enabled: inEditMode
+        Layout.minimumWidth: suggestedMinimumWidth
+        Layout.fillWidth: true
     }
 
-    TextInput {
+    NumberInput {
         text: pz
+        enabled: inEditMode
+        Layout.minimumWidth: suggestedMinimumWidth
+        Layout.fillWidth: true
     }
 
     // Row 3
@@ -58,15 +69,24 @@ GridLayout {
         text: "Velocity (km/s)"
     }
 
-    TextInput {
+    NumberInput {
         text: vx
+        Layout.minimumWidth: suggestedMinimumWidth
+        Layout.fillWidth: true
+        enabled: inEditMode
     }
 
-    TextInput {
+    NumberInput {
         text: vy
+        enabled: inEditMode
+        Layout.minimumWidth: suggestedMinimumWidth
+        Layout.fillWidth: true
     }
 
-    TextInput {
+    NumberInput {
         text: vz
+        enabled: inEditMode
+        Layout.minimumWidth: suggestedMinimumWidth
+        Layout.fillWidth: true
     }    
 }

@@ -14,6 +14,8 @@ GridLayout {
     property double inclination
     property double omega
 
+    property bool inEditMode
+
     columnSpacing: 16
     rowSpacing: 16
     columns: 4
@@ -24,16 +26,22 @@ GridLayout {
         text: "theta"
     }
 
-    TextInput {
+    NumberInput {
         text: theta
+        enabled: inEditMode
+        Layout.minimumWidth: suggestedMinimumWidth
+        Layout.fillWidth: true
     }
 
     DetailLabel {
         text: "Omega"
     }
 
-    TextInput {
+    NumberInput {
         text: bigOmega
+        enabled: inEditMode
+        Layout.minimumWidth: suggestedMinimumWidth
+        Layout.fillWidth: true
     }
 
     // Row 2
@@ -41,16 +49,22 @@ GridLayout {
         text: "h"
     }
 
-    TextInput {
+    NumberInput {
         text: h
+        enabled: inEditMode
+        Layout.minimumWidth: suggestedMinimumWidth
+        Layout.fillWidth: true
     }
 
     DetailLabel {
         text: "inclination"
     }
 
-    TextInput {
+    NumberInput {
         text: inclination
+        enabled: inEditMode
+        Layout.minimumWidth: suggestedMinimumWidth
+        Layout.fillWidth: true
     }
 
     // Row 3
@@ -58,15 +72,21 @@ GridLayout {
         text: "e"
     }
 
-    TextInput {
+    NumberInput {
         text: e
+        enabled: inEditMode
+        Layout.minimumWidth: suggestedMinimumWidth
+        Layout.fillWidth: true
     }
 
     DetailLabel {
         text: "omega"
     }
 
-    TextInput {
+    NumberInput {
         text: omega
+        enabled: inEditMode
+        Layout.minimumWidth: suggestedMinimumWidth
+        Layout.fillWidth: true
     }    
 }

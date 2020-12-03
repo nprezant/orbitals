@@ -78,14 +78,17 @@ Column {
 
             PositionVelocityView {
                 id: positionVelocityView
+                inEditMode: editButtons.inEditMode
             }
 
             OrbitalElementsView {
                 id: orbitalElementsView
+                inEditMode: editButtons.inEditMode
             }
 
             TimeView {
                 id: timeView
+                inEditMode: editButtons.inEditMode
             }
 
             states: [

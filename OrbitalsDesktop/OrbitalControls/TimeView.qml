@@ -3,14 +3,16 @@ import QtQuick.Controls 2.14
 
 Row {
     property double time
+    property bool inEditMode
 
     spacing: 16
 
     DetailLabel {
-        text: "Time"
+        text: "Time (s)"
     }
 
-    TextInput {
+    NumberInput {
         text: time
+        enabled: inEditMode
     }
 }
