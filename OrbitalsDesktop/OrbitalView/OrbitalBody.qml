@@ -3,15 +3,15 @@ import QtQuick3D 1.15
 import QtQuick3D.Materials 1.15
 
 Node {
-    id: root
-
     property real xRotation: Math.random() * 5
     property real yRotation: Math.random() * 5
     property real zRotation: Math.random() * 5
 
     property real darkeningFactor: Math.random() * 1.5 + 0.5
 
-    readonly property var shapes: ["#Cube", "#Cone", "#Sphere", "#Cylinder"]
+    property var velocity: Qt.vector3d(1, 0, 0)
+
+    readonly property var shapes: ["#Cube", "#Cone", "#Cylinder"]
     property int shapeChoice: Math.floor(Math.random() * shapes.length);
 
     Model {
@@ -34,5 +34,10 @@ Node {
                 diffuseColor: Qt.darker("#FF7F50", darkeningFactor)
             }
         ]
+    }
+
+    Arrow {
+        color: "blue"
+        // orientation: parent.velocity
     }
 }

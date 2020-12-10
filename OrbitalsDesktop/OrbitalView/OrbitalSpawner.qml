@@ -4,7 +4,6 @@ import QtQuick3D 1.15
 import OrbitalsInterface 1.0
 
 Node {
-    id: root
 
     property var instances: []
 
@@ -24,7 +23,7 @@ Node {
                 let zPos = orbitalData.positionZ / 100;
                 let orbitalBodyComponent = Qt.createComponent("OrbitalBody.qml");
                 let instance = orbitalBodyComponent.createObject(
-                    orbitalSpawner, { "x": xPos, "y": yPos, "z": zPos, });
+                    parent, { "x": xPos, "y": yPos, "z": zPos, });
                 instances.push(instance);
             }
             else if (changeType === OrbitalChangeData.Remove) {
@@ -45,6 +44,11 @@ Node {
                 guiInstance.x = orbitalData.positionX / 100;
                 guiInstance.y = orbitalData.positionY / 100;
                 guiInstance.z = orbitalData.positionZ / 100;
+
+                // km/s / 100
+                guiInstance.velocity.x = orbitalData.velocityX / 100;
+                guiInstance.velocity.y = orbitalData.velocityY / 100;
+                guiInstance.velocity.z = orbitalData.velocityZ / 100;
             }
         }
     }
