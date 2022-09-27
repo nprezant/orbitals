@@ -12,6 +12,9 @@ make
 ./OrbitalsDesktop/OrbitalsDesktop
 ```
 
+# Screenshot
+![Image](eg.png)
+
 # Debugging the Application with Gammaray
 ```console
 # Only needs to be done once per session
